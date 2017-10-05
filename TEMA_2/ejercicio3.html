@@ -14,18 +14,18 @@
   <p>
     <script type="text/javascript">
       /*
-                                  function invierteCadenaALaFuerza(cadena)
-                                  {
-                                    var temp = '';
-                                    for (let i=cadena.length-1; i >= 0; i--)
-                                    {
-                                      console.log(temp);
-                                      temp += cadena[i];
-                                    };
-                                    return temp;
-                                  };
-                                  document.write(invierteCadenaALaFuerza('Hola'));
-                                  */
+      function invierteCadenaALaFuerza(cadena)
+      {
+        var temp = '';
+        for (let i=cadena.length-1; i >= 0; i--)
+        {
+          console.log(temp);
+          temp += cadena[i];
+        };
+        return temp;
+      };
+      document.write(invierteCadenaALaFuerza('Hola'));
+      */
       function invierteCadena(cadena) {
         var temp = '';
         var x = cadena.length;
@@ -91,24 +91,24 @@
   <p>
     <script type="text/javascript">
       /*
-                              function infoCadena(cadena) {
-                                var contMayusculas = 0;
-                                var contMinusculas = 0;
-                                var mayusculas = cadena.match(/[A-Z]/g);
-                                var minusculas = cadena.match(/[A-Z]/i);
-                                if (mayusculas != null) {
-                                  contMayusculas++;
-                                }
-                                if (minusculas != null) {
-                                  contMinusculas++;
-                                }
-                                console.log(contMayusculas);
-                                console.log(contMinusculas);
-                              }
-                              console.log(infoCadena('pepE'));
-                              console.log(infoCadena('JUAN'));
-                              console.log(infoCadena('pepe'));
-                              */
+      function infoCadena(cadena) {
+        var contMayusculas = 0;
+        var contMinusculas = 0;
+        var mayusculas = cadena.match(/[A-Z]/g);
+        var minusculas = cadena.match(/[A-Z]/i);
+        if (mayusculas != null) {
+          contMayusculas++;
+        }
+        if (minusculas != null) {
+          contMinusculas++;
+        }
+        console.log(contMayusculas);
+        console.log(contMinusculas);
+      }
+      console.log(infoCadena('pepE'));
+      console.log(infoCadena('JUAN'));
+      console.log(infoCadena('pepe'));
+      */
 
       function infoCadena(cadena) {
         if (cadena == cadena.toLowerCase()) {

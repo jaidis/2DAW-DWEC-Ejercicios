@@ -51,29 +51,68 @@
   <h2>Apartado 4</h2>
   <p>
     <script type="text/javascript">
-      function combineTwoArrays(first,second) {
-        return [...first,...second];
+      function combineTwoArrays(first, second) {
+        return [...first, ...second];
       }
-      var a = [1,2,3];
-      var b = [1,2,3];
-      document.write(combineTwoArrays(a,b))
+      var a = [1, 2, 3];
+      var b = [1, 2, 3];
+      document.write(combineTwoArrays(a, b))
     </script>
   </p>
   <h2>Apartado 5</h2>
   <p>
     <script type="text/javascript">
       function sumEveryOther(...valores) {
-        let suma = 0
-        for (let i = 1; i < valores.length; i++) {
-          //document.write(parseInt(valores[i]))
-          if (parseInt(valores[i])) {
+        var suma = 0;
+        for (let i = 0; i < valores.length; i++) {
+          if (i % 2 == 0) {
             suma += valores[i];
           }
-        //i+=2;
         }
         return suma;
       }
       document.write(sumEveryOther(5, 6, 3, 4, 1));
+    </script>
+  </p>
+  <h2>Apartado 6</h2>
+  <p>
+    <script type="text/javascript">
+      function onlyUniques(...valores) {
+        let array = [];
+        for (let i = 0; i < valores.length; i++) {
+          if (!array.includes(valores[i])) {
+            array.push(valores[i]);
+          }
+        }
+        return array;
+      }
+      document.write(onlyUniques("cat", "cat", "dog", "pig"));
+    </script>
+  </p>
+  <h2>Apartado 7</h2>
+  <p>
+    <script type="text/javascript">
+      function combineAllArrays(array1, ...array2) {
+        return array1.concat(...array2);
+      }
+      var arr1 = [1, "peter", 5];
+      var arr2 = [1, 2, "45"];
+      var hege = ["Cecilie", "Lone"];
+      var stale = ["Emil", "Tobias", "Linus"];
+      document.write(combineAllArrays(arr1, arr2, hege, stale));
+    </script>
+  </p>
+  <h2>Apartado 8</h2>
+  <p>
+    <script type="text/javascript">
+      function sumAndSquare(...valores) {
+        var sumaCuadrados = 0;
+        for (let i = 0; i < valores.length; i++) {
+          sumaCuadrados += valores[i] * valores[i];
+        }
+        return sumaCuadrados;
+      }
+      document.write(sumAndSquare(3, 4, 2));
     </script>
   </p>
 </body>
