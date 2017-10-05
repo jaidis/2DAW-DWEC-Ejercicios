@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ejercicio 6</h1>
+  <h2>Apartado 1</h2>
+  <p>
+    <script type="text/javascript">
+      function sumaValoresIndefinidos(...valores) {
+        let suma = 0
+        for (let i = 0; i < valores.length; i++) {
+          suma += valores[i];
+        }
+        return suma;
+      }
+      //document.write(sumaValoresIndefinidos(4, 5, 67))
+    </script>
+  </p>
+  <h2>Apartado 2</h2>
+  <p>
+    <script type="text/javascript">
+      function addOnlyNums(...valores) {
+        let suma = 0
+        for (let i = 0; i < valores.length; i++) {
+          //document.write(parseInt(valores[i]))
+          if (parseInt(valores[i])) {
+            suma += valores[i];
+          }
+        }
+        return suma;
+      }
+      //document.write(addOnlyNums(4, 5, 6, 7, 'perro', 4, 'gallina', 56))
+    </script>
+  </p>
+  <h2>Apartado 3</h2>
+  <p>
+    <script type="text/javascript">
+      function countTheArgs(...valores) {
+        return valores.length;
+      }
+      //document.write(countTheArgs(4, 5, 6, 7, 'perro', 4, 'gallina', 56))
+    </script>
+  </p>
+  <h2>Apartado 4</h2>
+  <p>
+    <script type="text/javascript">
+      function combineTwoArrays(first,second) {
+        return [...first,...second];
+      }
+      /*
+      var a = [1,2,3];
+      var b = [1,2,3];
+      document.write(combineTwoArrays(a,b))
+      */
+    </script>
+  </p>
+  <h2>Apartado 5</h2>
+  <p>
+    <script type="text/javascript">
+      function sumEveryOther(...valores) {
+        let suma = 0
+        for (let i = 1; i < valores.length; i++) {
+          //document.write(parseInt(valores[i]))
+          if (parseInt(valores[i])) {
+            suma += valores[i];
+          }
+        //i+=2;
+        }
+        return suma;
+      }
+      document.write(sumEveryOther(5, 6, 3, 4, 1));
+    </script>
+  </p>
+</body>
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 10</h2>
+  <p>
+    <script type="text/javascript">
+      /*
+      for (var i = 1; i < 7; i++) {
+        document.write('<h' + i + '>Cabecera h' + i + '</h' + i + '>')
+      }
+      */
+      function cabeceras(i) {
+        for (i; i < 7; i++) {
+          document.write('<h' + i + '>Cabecera h' + i + '</h' + i + '>')
+        }
+      }
+      cabeceras(1);
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 11</h2>
+  <p>
+    <script type="text/javascript">
+      function makeTable(columnas, alto, ancho) {
+        document.write('<table border="0" cellspacing="2" bgcolor="black" width="' + ancho + '">');
+        document.write('<tr bgcolor="white" height="' + alto + '">');
+        for (var i = 0; i < columnas; i++) {
+          document.write('<td>&nbsp;</td>')
+        }
+        document.write('</tr>')
+        document.write('</table>')
+      }
+      makeTable(10, 10, 200);
+    </script>
+  </p>
+
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 12</h2>
+  <p>
+    <script type="text/javascript">
+      function makeTable(columnas, alto, ancho) {
+        document.write('<table border="0" cellspacing="2" bgcolor="black" width="' + ancho + '">');
+        document.write('<tr bgcolor="white" height="' + alto + '">');
+        for (var i = 0; i < columnas; i++) {
+          if (i % 2 == 0) {
+            document.write('<td bgcolor="black">&nbsp;</td>')
+          } else {
+            document.write('<td>&nbsp;</td>')
+          }
+          //document.write('<td bgcolor="+{{i%2==0},black|white}+">&nbsp;</td>')
+        }
+        document.write('</tr>')
+        document.write('</table>')
+      }
+      makeTable(10, 10, 300);
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 13</h2>
+  <p>
+    <script type="text/javascript">
+      function makeTable(columnas, alto, ancho) {
+        document.write('<table border="0" cellspacing="2" bgcolor="black" width="' + ancho + '">');
+        document.write('<tr bgcolor="white" height="' + alto + '">');
+        var i = 0;
+        while (i < columnas) {
+          document.write('<td>&nbsp;</td>')
+          i++;
+        }
+        document.write('</tr>')
+        document.write('</table>')
+      }
+      makeTable(10, 10, 200);
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 14</h2>
+  <p>
+    <script type="text/javascript">
+      function makeTable(columnas, alto, ancho) {
+        document.write('<table border="0" cellspacing="2" bgcolor="black" width="' + ancho + '">');
+        document.write('<tr bgcolor="white" height="' + alto + '">');
+        var i = 0;
+        while (i < columnas) {
+          if (i % 2 == 0) {
+            document.write('<td bgcolor="black">&nbsp;</td>')
+          } else {
+            document.write('<td>&nbsp;</td>')
+          }
+          i++;
+        }
+        document.write('</tr>')
+        document.write('</table>')
+      }
+      makeTable(10, 10, 300);
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 15</h2>
+  <p>
+    <script type="text/javascript">
+      function number() {
+        var j1 = prompt('Player 1, give me a number');
+        var j2 = 0;
+        while (j2 != j1) {
+          j2 = prompt('Player 2, give me a number');
+          if (j1 > j2) {
+            alert('Your number is less');
+          } else if (j2 > j1) {
+            alert('Your number is higher');
+          } else {
+            alert('Well done!');
+          }
+        }
+      }
+      //number();
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 16</h2>
+  <p>
+    <script type="text/javascript">
+      function number() {
+        var j1 = prompt('Player 1, give me a number');
+        var j2 = prompt('Player 2, give me a number');;
+        do {
+          if (j1 > j2) {
+            alert('Your number is less');
+          } else {
+            alert('Your number is higher');
+          }
+          j2 = prompt('Player 2, give me a number');
+        } while (j2 != j1)
+      }
+      //number();
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 17</h2>
+  <p>
+    <script type="text/javascript">
+      function tablas(tabla)
+      {
+        for (let i=1; i<11; i++)
+        {
+          document.write(i+'x'+tabla+'='+i*tabla+'<br/>');
+        }
+      }
+      tablas(10);
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 18</h2>
+  <p>
+    <script type="text/javascript">
+    /*
+    var c = prompt("Cuantas columnas quieres hacer: ");
+    var f = prompt("Cuantas fila quieres hacer: ");
+    var a = prompt("Ancho de las celdas: ");
+    var h = prompt("Altura de las celdas: ");
+    */
+    function escribeTabla(c, f, a, h) {
+      let fila = f
+      let contador = c
+      document.write("<table border='0' cellspading='2' bgcolor='black'>");
+      while (fila > 0) {
+        document.write("<tr height='" + h + "' width='" + c * a + "' >");
+        while (contador > 0) {
+          document.write("<td bgcolor='white' width='" + a + "'> &nbsp;</td>");
+          contador --;
+        }
+        fila--;
+        contador = c
+        document.write('</tr>')
+      }
+      document.write('</table>')
+    }
+    //escribeTabla(c, f, a, h);
+    escribeTabla(10,10,10,10);
+    </script>
+  </p>
+  <h1>Ejercicio 5</h1>
+  <h2>Apartado 19</h2>
+  <p>
+    <script type="text/javascript">
+    /*
+    var a = prompt("Ancho de las celdas: ");
+    var h = prompt("Altura de las celdas: ");
+    */
+    function ajedrez(a, h) {
+      let fila = 8
+      let contador = 8
+      document.write("<table border='0' cellspading='2' bgcolor='black'>");
+      while (fila > 0) {
+        document.write("<tr height='" + h + "' width='" + 8 * a + "' >");
+        while (contador > 0) {
+          if (fila % 2 == 0) {
+            document.write("<td bgcolor='black' width='" + a + "'> &nbsp;</td>");
+            document.write("<td bgcolor='white' width='" + a + "'> &nbsp;</td>");
+            contador --;
+          } else {
+            document.write("<td bgcolor='white' width='" + a + "'> &nbsp;</td>");
+            document.write("<td bgcolor='black' width='" + a + "'> &nbsp;</td>");
+            contador--;
+          }
+        }
+        fila--;
+        contador = 8
+        document.write('</tr>')
+      }
+      document.write('</table>')
+    }
+    //ajedrez(a, h);
+    ajedrez(10,10);
+    </script>
+  </p>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ejercicio 3</h1>
+  <h2>Apartado 1</h2>
+  <p>
+    <script type="text/javascript">
+      /*
+                                  function invierteCadenaALaFuerza(cadena)
+                                  {
+                                    var temp = '';
+                                    for (let i=cadena.length-1; i >= 0; i--)
+                                    {
+                                      console.log(temp);
+                                      temp += cadena[i];
+                                    };
+                                    return temp;
+                                  };
+                                  document.write(invierteCadenaALaFuerza('Hola'));
+                                  */
+      function invierteCadena(cadena) {
+        var temp = '';
+        var x = cadena.length;
+        while (x >= 0) {
+          temp += cadena.charAt(x);
+          x--;
+        }
+        return temp;
+      }
+      //document.write(invierteCadena('Hola'));
+
+      function inviertePalabras(cadena) {
+        cadena = cadena.split(' ');
+        var temp = '';
+        var x = 0;
+        while (x <= cadena.length - 1) {
+          temp += invierteCadena(cadena[x]) + ' ';
+          x++;
+        }
+        return temp;
+      };
+      //document.write(inviertePalabras('Hola que tal'));
+
+      function encuentraPalabraMasLarga(cadena) {
+        cadena = cadena.split(' ');
+        var temp = '';
+        var contador = 0;
+        var x = 0;
+        while (x < cadena.length) {
+          if (cadena[x].length >= contador) {
+            temp = cadena[x];
+            contador = cadena[x].length;
+          }
+          x++;
+        }
+        return temp;
+      };
+      //document.write(encuentraPalabraMasLarga('mal parido hijueputa gonorrea'));
+
+      function filtraPalabrasMasLargas(cadena, valor) {
+        cadena = cadena.split(' ');
+        var temp = 0;
+        var x = 0;
+        while (x < cadena.length) {
+          if (cadena[x].length >= valor) {
+            temp++;
+          }
+          x++;
+        }
+        return temp;
+      };
+
+      //document.write(filtraPalabrasMasLargas('mal parido hijueputa parido gonorrea', 6));
+
+      function cadenaBienFormada(cadena) {
+        return cadena.slice(0, 1).toUpperCase() + cadena.slice(1).toLowerCase();
+      };
+
+      //document.write(cadenaBienFormada('pePE'));
+    </script>
+  </p>
+  <h2>Apartado 2</h2>
+  <p>
+    <script type="text/javascript">
+      /*
+                              function infoCadena(cadena) {
+                                var contMayusculas = 0;
+                                var contMinusculas = 0;
+                                var mayusculas = cadena.match(/[A-Z]/g);
+                                var minusculas = cadena.match(/[A-Z]/i);
+                                if (mayusculas != null) {
+                                  contMayusculas++;
+                                }
+                                if (minusculas != null) {
+                                  contMinusculas++;
+                                }
+                                console.log(contMayusculas);
+                                console.log(contMinusculas);
+                              }
+                              console.log(infoCadena('pepE'));
+                              console.log(infoCadena('JUAN'));
+                              console.log(infoCadena('pepe'));
+                              */
+
+      function infoCadena(cadena) {
+        if (cadena == cadena.toLowerCase()) {
+          return "Sólo minúsculas";
+        } else if (cadena == cadena.toUpperCase()) {
+          return "Sólo mayúsculas";
+        } else {
+          return "Ambas cosas";
+        }
+      }
+
+      document.write(infoCadena('pepe') + '<br/>');
+      document.write(infoCadena('pepE') + '<br/>');
+      document.write(infoCadena('PEPE') + '<br/>');
+    </script>
+  </p>
+  <h2>Apartado 7</h2>
+  <p>
+    <script type="text/javascript">
+      function palindromo(cadena) {
+        var longitud = cadena.length;
+        for (var i = 0; i < Math.floor(longitud / 2); i++) {
+          if (cadena[i] !== cadena[longitud - 1 - i]) {
+            return false;
+          }
+        }
+        return true;
+      }
+      //document.write(palindromo("malayalam") + '<br/>');
+      //document.write(palindromo("pepe") + '<br/>');
+    </script>
+  </p>
+  <h2>Apartado 9</h2>
+  <p>
+    <script type="text/javascript">
+      function adaptaCadena(cad) {
+        var x = cad.toLowerCase().split(' ').join('')
+        return x
+      }
+
+      function tabla(cad) {
+        var cadi = invierteCadena(cad)
+        document.write('<table>')
+        document.write('<tr>')
+        for (let i = 0; i < cad.length; i++) {
+          document.write('<td>' + cad[i] + '</td>')
+        }
+        document.write('</tr>')
+        for (let j = 1; j < cad.length - 1; j++) {
+          document.write("<tr>");
+          document.write("<td>" + cad[j] + "</td>");
+
+          for (let k = 0; k < cad.length - 2; k++) {
+            document.write("<td></td>");
+          }
+
+          document.write("<td>" + cadi[j] + "</td>");
+          document.write("</tr>");
+        }
+        for (let i = 0; i < cadi.length; i++) {
+          document.write('<td>' + cadi[i] + '</td>')
+        }
+        document.write('</tr>')
+      }
+      tabla(adaptaCadena('Hola'))
+    </script>
+  </p>
+</body>
+
+</html>

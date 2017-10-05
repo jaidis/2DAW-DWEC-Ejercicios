@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ejercicio 1</h1>
+  <h2>Apartado 1</h2>
+  <p>
+    <script type="text/javascript">
+      var x = new Date();
+      document.write('Año ' + x.getFullYear() + '<br/>');
+      document.write('Mes ' + x.getMonth() + '<br/>');
+      document.write('Día ' + x.getDay() + '<br/>');
+      document.write('Hora ' + x.getHours() + '<br/>')
+      document.write('Minutos ' + x.getMinutes() + '<br/>');
+      document.write('Segundos ' + x.getSeconds() + '<br/>');
+    </script>
+  </p>
+  <h2>Apartado 2</h2>
+  <p>
+    <script type="text/javascript">
+      function sumadias(dias) {
+        let fecha = new Date()
+        fecha.setDate(fecha.getDate() + dias)
+        return fecha
+      }
+
+      function anosuma(ano) {
+        let anyo = new Date()
+        anyo.setFullYear(anyo.getFullYear() + ano)
+        return anyo
+      }
+
+      function horasuma(hora) {
+        let time = new Date()
+        time.setHours(time.getHours() + hora)
+        return time
+      }
+
+      function restarfechas(fecha1, fecha2) {
+        let f1 = fecha1.getTime()
+        let f2 = fecha2.getTime()
+        let fecha3 = (f1 - f2) / (1000 * 60 * 60 * 24)
+        return fecha3
+      }
+      var fechaactual = new Date()
+      var fecha85 = sumadias(85)
+      var fecha187 = sumadias(-187)
+      document.write('La fecha actual es: ' + fechaactual + '<br>')
+      document.write('La fecha sumada 85 dias: ' + fecha85 + '<br>')
+      document.write('La fecha restada 187 dias: ' + fecha187 + '<br>')
+      document.write('Los dos años sumados son: ' + anosuma(2) + '<br>')
+      document.write('Las 24h restadas son: ' + horasuma(-24) + '<br>')
+      document.write('Las fechas restadas son: ' + restarfechas(fecha85, fecha187) + '<br>')
+    </script>
+  </p>
+  <h2>Apartado 3</h2>
+  <p>
+    <script type="text/javascript">
+      var temp;
+
+      function sixtySeconds() {
+        temp = setTimeout(alertFunc, 60000);
+      }
+
+      function alertFunc() {
+        alert('Se acabó el tiempo');
+      }
+      sixtySeconds();
+    </script>
+  </p>
+  <h2>Apartado 5</h2>
+  <p>
+    <script type="text/javascript">
+      function pablo()
+      {
+        var hora = new Date();
+        document.write(hora.getHours() + ' '+ hora.getMinutes() + ' '+ hora.getSeconds());
+        document.close();
+        setTimeout(pablo, 1000);
+      }
+      pablo();
+      /*
+      function startTime() {
+        today = new Date();
+        h = today.getHours();
+        m = today.getMinutes();
+        s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('reloj').innerHTML = h + ":" + m + ":" + s;
+        t = setTimeout('startTime()', 500);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+      window.onload = function() {
+        startTime();
+      }
+      */
+    </script>
+    <div id="reloj" style="font-size:20px;"></div>
+  </p>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ejercicio 2</h1>
+  <h2>Apartado 1</h2>
+  <p>
+    <script type="text/javascript">
+      function aleatorio_0_1() {
+        var valor = Math.round(Math.random());
+        document.write('Número aleatorio entre 0 y 1 : ' + valor + '<br/>');
+      };
+
+      function aleatorio_100_200() {
+        var valor = Math.round(Math.random() * (201 - 100) + 100);
+        document.write('Número aleatorio entre 100 y 200 : ' + valor + '<br/>');
+      }
+
+      function aleatorio() {
+        var min = parseInt(prompt('Valor mínimo'));
+        var max = parseInt(prompt('Valor máximo'));
+        var valor = Math.round(Math.random() * (max - min) + min);
+        document.write('Número aleatorio entre ' + min + ' y ' + max + ' : ' + valor + '<br/>');
+      }
+      aleatorio_0_1();
+      aleatorio_100_200();
+      //aleatorio();
+    </script>
+  </p>
+  <h2>Apartado 5</h2>
+  <p>
+    <script type="text/javascript">
+      function ecuacionSegundoGrado() {
+        var a = parseInt(prompt('Valor de a (Ejemplo 1)'));
+        var b = parseInt(prompt('Valor de b (Ejemplo -7)'));
+        var c = parseInt(prompt('Valor de c (Ejemplo 10)'));
+        var solucionPrimera = (-b + (Math.sqrt((Math.pow(b, 2) - (4 * a * c))))) / (2 * a);
+        var solucionSegunda = (-b - (Math.sqrt((Math.pow(b, 2) - (4 * a * c))))) / (2 * a);
+        document.write('Primera solucion: ' + solucionPrimera + ' <br/>');
+        document.write('Segunda solucion: ' + solucionSegunda + ' <br/>');
+      };
+      ecuacionSegundoGrado();
+    </script>
+  </p>
+  <h2>Apartado 7</h2>
+  <p>
+    <script type="text/javascript">
+      function escribeTablaSeno(f, a=20, h=20) {
+        let fila=1;
+        let contador = 2;
+        document.write("<table border='0' cellspading='20' bgcolor='black'>");
+        while (fila <= f) {
+          document.write("<tr height='" + h + "' width='" + 2 * a + "' >");
+          while (contador > 0) {
+            if (contador == 2)
+            {
+              document.write("<td bgcolor='white'>" + fila + "&nbsp;</td>");
+              contador --;
+            }
+            else
+            {
+              document.write("<td bgcolor='white'>" + Math.sin(fila) + "&nbsp;</td>");
+              contador --;
+            };
+          }
+          fila++;
+          contador = 2;
+          document.write('</tr>');
+        }
+        document.write('</table>');
+      }
+      escribeTablaSeno(20);
+    </script>
+  </p>
+  <h2>Apartado 8</h2>
+  <p>
+    <script type="text/javascript">
+      function imgRandom() {
+        var valor = Math.round(Math.random() * (3 - 1) + 1);
+        if (valor == 1) {
+          document.write('<img src="1.jpg"></img>');
+        } else if (valor == 2) {
+          document.write('<img src="2.jpg"></img>');
+        } else {
+          document.write('<img src="3.jpg"></img>');
+        };
+      };
+      imgRandom();
+    </script>
+  </p>
+</body>
+
+</html>

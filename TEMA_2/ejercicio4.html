@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ejercicio 4</h1>
+  <h2>Apartado 1</h2>
+  <p>
+    <script type="text/javascript">
+      function navegador() {
+        document.write('<table>');
+        for (let x in navigator) {
+          document.write('<tr>');
+          document.write('<td> navigator.' + x + '</td>');
+          document.write('<td>' + navigator[x] + '</td>');
+          document.write('</tr>');
+        }
+        document.write('</table>');
+      }
+      navegador()
+    </script>
+  </p>
+  <h2>Apartado 2</h2>
+  <p>
+    <script type="text/javascript">
+      function ventana() {
+        document.write('<table>');
+        for (let x in window) {
+          document.write('<tr>');
+          document.write('<td> window.' + x + '</td>');
+          document.write('<td>' + window[x] + '</td>');
+          document.write('</tr>');
+        }
+        document.write('</table>');
+      }
+      ventana();
+    </script>
+  </p>
+</body>
+
+</html>
