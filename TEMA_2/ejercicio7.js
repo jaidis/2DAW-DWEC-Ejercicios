@@ -51,6 +51,13 @@ function posicionActualDos() {
 
 //Apartado 2 - 1
 function initMap() {
+  function animarMarker() {
+    if (marker2.getAnimation() !== null) {
+      marker2.setAnimation(null);
+    } else {
+      marker2.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: -34.397,
@@ -77,7 +84,6 @@ function initMap() {
   });
   var marker = new google.maps.Marker({
     map: map2,
-    draggable: true,
     position: {
       lat: -34.397,
       lng: 150.644
@@ -85,7 +91,7 @@ function initMap() {
   });
   var marker2 = new google.maps.Marker({
     map: map3,
-    draggable: true,
+    animation: google.maps.Animation.DROP,
     position: {
       lat: -34.397,
       lng: 150.644
@@ -96,7 +102,7 @@ function initMap() {
     map: map3
   });
 
-  
+
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -110,22 +116,25 @@ function initMap() {
       map.setCenter(pos);
       marker.setPosition(pos);
       map2.setCenter(pos);
-      geocoder.geocode({'location': pos}, function(results, status) {
-          if (status === 'OK') {
-            if (results[1]) {
-              map3.setZoom(16);
-              infoWindow2.setContent(results[0].formatted_address);
-              infoWindow2.open(map3, marker2);
-              marker2.setPosition(pos);
-              map3.setCenter(pos);
+      geocoder.geocode({
+        'location': pos
+      }, function(results, status) {
+        if (status === 'OK') {
+          if (results[1]) {
+            map3.setZoom(16);
+            infoWindow2.setContent(results[0].formatted_address);
+            infoWindow2.open(map3, marker2);
+            marker2.setPosition(pos);
+            map3.setCenter(pos);
+            marker2.addListener('click', animarMarker);
 
-            } else {
-              window.alert('No results found');
-            }
           } else {
-            window.alert('Geocoder failed due to: ' + status);
+            window.alert('No results found');
           }
-        });
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
 
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
