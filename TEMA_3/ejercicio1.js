@@ -1,6 +1,7 @@
 
 function lanzamiento(){
-  return Math.round(Math.random() * (6 - 1) + 1);
+  //return Math.round(Math.random() * (6 - 1) + 1);
+  return Math.floor(Math.random()*6)+1;
 }
 
 function lanzamiento6000(){
@@ -8,6 +9,8 @@ function lanzamiento6000(){
   var arrayValores = [0,0,0,0,0,0];
   for (var i = 0; i < 6000; i++)
   {
+    //arrayValores[lanzamiento()-1]++;
+
     array[i] = lanzamiento();
     switch(array[i])
     {
@@ -47,7 +50,7 @@ function potenciasRecursivas(base=2, exponente=2)
 
 function factorial(valor)
 {
-  if (valor == 0)
+  if (valor <= 1)
   {
     return 1;
   }
@@ -55,4 +58,19 @@ function factorial(valor)
   {
     return valor*factorial(--valor);
   }
+}
+
+function tablaFactorial(f=10,h=20,a=20)
+{
+  let contador=1;
+  document.write("<table border='0' cellspading='20' bgcolor='black'>");
+  while (contador <= f) {
+    document.write("<tr height='" + h + "' width='" + 2 * a + "' >");
+    document.write("<td bgcolor='white'>" + contador + "&nbsp;</td>");
+    document.write("<td bgcolor='white'>" + factorial(contador) + "&nbsp;</td>");
+    document.write('</tr>');
+    contador++;
+  }
+  document.write('</table>');
+
 }
