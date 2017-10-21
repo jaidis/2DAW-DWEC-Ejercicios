@@ -40,3 +40,13 @@ function apartadoJ(array,valor)
 {
   array.unshift(valor);
 }
+
+function apartadoK(array,valor)
+{
+  return array.splice(1,1,valor);
+}
+
+function apartadoL(array)
+{
+  return (array.filter(function(a){return a[0] == 'J'})).sort();
+}
