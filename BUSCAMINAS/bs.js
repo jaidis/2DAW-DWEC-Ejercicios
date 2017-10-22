@@ -113,7 +113,14 @@ class Buscaminas {
   }
 
   comprobarCoordenada(fila = 0, columna = 0) {
-    console.log(this.array[fila - 1][columna - 1]);
+    if (this.array[fila - 1][columna - 1][1] == '*')
+    {
+      console.log('Has encontrado una bomba, se acaba el juego');
+      this.dibujaTablaCompleta();
+    }
+    else{
+      console.log(this.array[fila - 1][columna - 1][1]);
+    }
   }
 
   dibujaTablaCompleta() {
