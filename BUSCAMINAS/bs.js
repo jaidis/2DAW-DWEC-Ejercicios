@@ -1,13 +1,9 @@
 class Buscaminas {
-  constructor(tiempo = 10, dimensiones = 8) {
+  constructor(tiempo = 10, dimensiones = 8, bombas = 10) {
     this.array = [];
     this.tiempo = tiempo;
     this.dimensiones = dimensiones;
-    this.iniciarArray();
-    this.iniciarBombas();
-    this.iniciarBombasCercanas();
-    this.dibujaTablaCompleta();
-
+    this.bombas = bombas;
   }
 
   iniciarArray() {
@@ -21,7 +17,7 @@ class Buscaminas {
     }
   }
 
-  iniciarBombas(cantidad = 6) {
+  iniciarBombas(cantidad = this.bombas) {
     var arrayBombas = [];
     var bomba = 0;
     var fila = 0;
@@ -116,7 +112,7 @@ class Buscaminas {
     // y -> fila, x-> columna, gridy-> dimensiones filas, gridx -> dimensiones columnas
   }
 
-  comprobarCasilla(fila = 0, columna = 0) {
+  comprobarCoordenada(fila = 0, columna = 0) {
     console.log(this.array[fila - 1][columna - 1]);
   }
 
@@ -142,4 +138,16 @@ class Buscaminas {
     }
     document.write('</table></center>');
   }
+
+  jugar()
+  {
+    this.iniciarArray();
+    console.log('Iniciando tablero');
+    this.iniciarBombas();
+    console.log('Iniciando bombas');
+    this.iniciarBombasCercanas();
+    console.log('Comprobando bombas cercanas');
+    console.log('Ya puedes jugar');
+  }
+
 }
