@@ -18,17 +18,23 @@
 </head>
 
 <body>
-  <h1>Buscaminas V 0.1.1</h1>
+  <h1>Buscaminas V 0.1.5</h1>
   <p>
     Metodos a utilizar de la clase: <br/>
     new Buscaminas(tiempo -> por defecto 10, dimensiones-> por defecto 8, bombas-> por defecto 10);<br/>
     jugar();<br/>
-    comprobarCoordenada(fila,columna);<br/>
+    comprueba();<br/>
+    dibujaTabla();<br/>
+    <br/>
+    For debug:<br/>
+    comprobarCasilla(fila,columna);<br/>
     dibujaTablaCompleta();<br/>
   </p>
   <p>
     <script type="text/javascript">
       console.log('Bienvenidos a Buscaminas, Copyright (c) 2017');
+      var partida = new Buscaminas(300, 8, 10);
+      partida.jugar();
     </script>
   </p>
 </body>
