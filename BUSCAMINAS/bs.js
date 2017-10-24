@@ -112,7 +112,7 @@ class Buscaminas {
     setTimeout(function() {
       console.log('Tiempo terminado');
       this.tiempo = 0;
-    }, 30000);
+    }, this.dimensiones*10000);
   }
 
   comprobar(fila = 0, columna = 0) {
@@ -155,19 +155,19 @@ class Buscaminas {
     document.write('<center><table border=2>');
     document.write('<tr><td></td>');
     for (var i = 0; i < this.dimensiones; i++) {
-      document.write('<td style="background-color:#999"><b>' + (i + 1) + '</b></td>');
+      document.write('<td style="background-color:#999; padding: 1em"><b>' + (i + 1) + '</b></td>');
     }
     document.write('</tr>');
     for (var i = 0; i < this.dimensiones; i++) {
-      document.write('<tr><td style="background-color:#999"><b>' + (i + 1) + '</b></td>');
+      document.write('<tr><td style="background-color:#999; padding: 1em"><b>' + (i + 1) + '</b></td>');
       for (var j = 0; j < this.dimensiones; j++) {
         if (this.array[i][j][2] == 1) {
           if (this.array[i][j][1] == '*') {
-            document.write('<td style="background-color:#FEA">' + this.array[i][j][1] + '</td>');
+            document.write('<td style="background-color:#FEA; padding: 1em">' + this.array[i][j][1] + '</td>');
           } else if (this.array[i][j][1] >= '1') {
-            document.write('<td style="background-color:#AEF">' + this.array[i][j][1] + '</td>');
+            document.write('<td style="background-color:#AEF; padding: 1em">' + this.array[i][j][1] + '</td>');
           } else {
-            document.write('<td style="background-color:#AFE">' + this.array[i][j][1] + '</td>');
+            document.write('<td style="background-color:#AFE; padding: 1em ">' + this.array[i][j][1] + '</td>');
           }
         } else {
           document.write('<td> </td>');
@@ -178,6 +178,9 @@ class Buscaminas {
     document.write('</table></center>');
   }
 
+  /*
+  This is only for debug
+  */
   comprobarCasilla(fila = 0, columna = 0) {
     if (this.array[fila - 1][columna - 1][1] == '*') {
       console.log('Has encontrado una bomba, se acaba el juego');
@@ -186,22 +189,23 @@ class Buscaminas {
       console.log(this.array[fila - 1][columna - 1][0], this.array[fila - 1][columna - 1][1], this.array[fila - 1][columna - 1][2]);
     }
   }
+
   dibujaTablaCompleta() {
     document.write('<center><table border=2>');
     document.write('<tr><td></td>');
     for (var i = 0; i < this.dimensiones; i++) {
-      document.write('<td style="background-color:#999"><b>' + (i + 1) + '</b></td>');
+      document.write('<td style="background-color:#999; padding: 1em"><b>' + (i + 1) + '</b></td>');
     }
     document.write('</tr>');
     for (var i = 0; i < this.dimensiones; i++) {
-      document.write('<tr><td style="background-color:#999"><b>' + (i + 1) + '</b></td>');
+      document.write('<tr><td style="background-color:#999; padding: 1em"><b>' + (i + 1) + '</b></td>');
       for (var j = 0; j < this.dimensiones; j++) {
         if (this.array[i][j][1] == '*') {
-          document.write('<td style="background-color:#FEA">' + this.array[i][j][1] + '</td>');
+          document.write('<td style="background-color:#FEA; padding: 1em">' + this.array[i][j][1] + '</td>');
         } else if (this.array[i][j][1] >= '1') {
-          document.write('<td style="background-color:#AEF">' + this.array[i][j][1] + '</td>');
+          document.write('<td style="background-color:#AEF; padding: 1em">' + this.array[i][j][1] + '</td>');
         } else {
-          document.write('<td style="background-color:#AFE">' + this.array[i][j][1] + '</td>');
+          document.write('<td style="background-color:#AFE; padding: 1em">' + this.array[i][j][1] + '</td>');
         }
       }
       document.write('</tr>');
