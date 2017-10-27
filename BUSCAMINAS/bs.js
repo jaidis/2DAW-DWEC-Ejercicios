@@ -152,6 +152,7 @@ class Buscaminas {
     }
   }
   dibujaTabla() {
+    document.close();
     document.write('<center><table border=2>');
     document.write('<tr><td></td>');
     for (var i = 0; i < this.dimensiones; i++) {
@@ -191,6 +192,7 @@ class Buscaminas {
   }
 
   dibujaTablaCompleta() {
+    document.close();
     document.write('<center><table border=2>');
     document.write('<tr><td></td>');
     for (var i = 0; i < this.dimensiones; i++) {
