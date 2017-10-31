@@ -1,0 +1,49 @@
+body, html {
+  height: 100%;
+}
+
+#barra_lateral {
+  display: none;
+  min-width: 10%;
+  float: left;
+  height: 100%;
+  background-color: lightblue;
+}
+
+#cuerpo {
+  margin-left: 20px;
+  margin-top: 10px;
+  width: 100%;
+  float: left;
+}
+
+body {
+  background-color: white;
+  font-family: Sans Serif;
+}
+
+#enlaces {
+  border: none;
+  background-color: white;
+}
+
+a {
+  text-decoration: initial;
+  padding: 0px;
+  font-weight: normal;
+}
+
+h1 {
+  color: black;
+}
+
+#oculto {
+  font-weight: bold;
+  display: none;
+}
+
+#marco {
+  border: none;
+  background-color: white;
+  padding: 0px;
+}
