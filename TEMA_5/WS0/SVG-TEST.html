@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .test {
+      background-color: #EEE;
+      border: 1px solid black;
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="test">
+    <svg height="600" width="800" xmlns=http://www.w3.org/2000/svg id="caja">
+    <circle id="circle" cx="50" cy="50" r="20" stroke="yellow" stroke-width="1" fill="pink" />
+    <circle id="circle2" cx="50" cy="300" r="20" stroke="yellow" stroke-width="1" fill="black" />
+  </svg>
+    <script type="text/javascript">
+      var elem = document.getElementById("circle");
+      var elem2 = document.getElementById("circle2");
+
+      function myMove() {
+        var elem = document.getElementById("circle");
+        var elem2 = document.getElementById("circle2");
+        var canvas = document.getElementsByTagName('svg')[0];
+        var canvasy = canvas.getAttribute('height');
+        var canvasx = canvas.getAttribute('width');
+        var movex = 1;
+        var movey = 1;
+        var move2x = 1;
+        var move2y = 1;
+        var marginx = 20;
+        var marginy = 20;
+        var margin2x = 20;
+        var margin2y = 20;
+        var bally = parseInt(elem.getAttribute("cy")) + marginy;
+        var ballx = parseInt(elem.getAttribute("cx")) + marginx;
+        var ball2y = parseInt(elem2.getAttribute("cy")) + margin2y;
+        var ball2x = parseInt(elem2.getAttribute("cx")) + margin2x;
+
+        var id = setInterval(frame, 10);
+
+        function setMovement() {
+          var bally = parseInt(elem.getAttribute("cy")) + marginy;
+          var ballx = parseInt(elem.getAttribute("cx")) + marginx;
+          var ball2y = parseInt(elem2.getAttribute("cy")) + margin2y;
+          var ball2x = parseInt(elem2.getAttribute("cx")) + margin2x;
+          if (bally > canvasy || bally < 0) {
+            movey *= -1;
+            marginy *= -1;
+
+          } else if (ballx > canvasx || ballx < 0) {
+            movex *= -1;
+            marginx *= -1;
+          }
+
+          if (ball2y > canvasy || ball2y < 0) {
+            move2y *= -1;
+            margin2y *= -1;
+
+          } else if (ball2x > canvasx || ball2x < 0) {
+            move2x *= -1;
+            margin2x *= -1;
+          }
+        }
+
+        function frame() {
+          setMovement();
+          elem.setAttribute("cx", parseInt(elem.getAttribute("cx")) + movex);
+          elem.setAttribute("cy", parseInt(elem.getAttribute("cy")) + movey);
+          elem2.setAttribute("cx", parseInt(elem2.getAttribute("cx")) + move2x);
+          elem2.setAttribute("cy", parseInt(elem2.getAttribute("cy")) + move2y);
+        }
+      }
+
+
+      window.onload = function() {
+        myMove();
+      };
+    </script>
+  </div>
+</body>
+
+</html>
