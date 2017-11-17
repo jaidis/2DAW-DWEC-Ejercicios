@@ -20,13 +20,13 @@
   <div class="test">
     <svg height="600" width="800" xmlns=http://www.w3.org/2000/svg id="caja">
     <circle id="circle" cx="50" cy="50" r="20" stroke="yellow" stroke-width="1" fill="pink" />
-    <circle id="circle2" cx="50" cy="300" r="20" stroke="yellow" stroke-width="1" fill="black" />
+    <circle id="circle2" cx="50" cy="500" r="20" stroke="yellow" stroke-width="1" fill="black" />
   </svg>
     <script type="text/javascript">
       var elem = document.getElementById("circle");
       var elem2 = document.getElementById("circle2");
 
-      function myMove() {
+      function iniciarGraficos() {
         var elem = document.getElementById("circle");
         var elem2 = document.getElementById("circle2");
         var canvas = document.getElementsByTagName('svg')[0];
@@ -44,14 +44,14 @@
         var ballx = parseInt(elem.getAttribute("cx")) + marginx;
         var ball2y = parseInt(elem2.getAttribute("cy")) + margin2y;
         var ball2x = parseInt(elem2.getAttribute("cx")) + margin2x;
-
         var id = setInterval(frame, 10);
 
-        function setMovement() {
+        function cambiarMovimiento() {
           var bally = parseInt(elem.getAttribute("cy")) + marginy;
           var ballx = parseInt(elem.getAttribute("cx")) + marginx;
           var ball2y = parseInt(elem2.getAttribute("cy")) + margin2y;
           var ball2x = parseInt(elem2.getAttribute("cx")) + margin2x;
+
           if (bally > canvasy || bally < 0) {
             movey *= -1;
             marginy *= -1;
@@ -69,10 +69,18 @@
             move2x *= -1;
             margin2x *= -1;
           }
+
+          if (ballx == ball2x && bally == ball2y)
+          {
+            move2x *= -1;
+            margin2x *= -1;
+            move2y *= -1;
+            margin2y *=-1;
+          }
         }
 
         function frame() {
-          setMovement();
+          cambiarMovimiento();
           elem.setAttribute("cx", parseInt(elem.getAttribute("cx")) + movex);
           elem.setAttribute("cy", parseInt(elem.getAttribute("cy")) + movey);
           elem2.setAttribute("cx", parseInt(elem2.getAttribute("cx")) + move2x);
@@ -82,7 +90,7 @@
 
 
       window.onload = function() {
-        myMove();
+        iniciarGraficos();
       };
     </script>
   </div>
