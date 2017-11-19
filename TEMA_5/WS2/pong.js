@@ -83,6 +83,10 @@ class RectanguloVista {
   cambiarX(posicionX) {
     this.id.setAttribute('x', posicionX);
   }
+
+  actualizarEjeY() {
+    this.y = parseInt(this.id.getAttribute('y'));
+  }
 }
 
 class TableroVista {
@@ -111,7 +115,7 @@ class Juego {
     temp.value = "tablero";
     tablero.setAttributeNode(temp);
     this.id.appendChild(tablero);
-    this.tablero = new TableroVista("tablero", 1024, 768);
+    this.tablero = new TableroVista(temp.value, 1024, 768);
     // Crear los rectangulos
     var rectanguloIzquierda = document.createElementNS(tagSVG, "rect");
     temp = document.createAttribute("id");
@@ -149,22 +153,27 @@ class Juego {
   }
 
   moverRectangulos() {
-    document.addEventListener('keypress', function(e) {
-      //decrementar rectangulo 1 tecla W
-      if (e.keyCode == 119) {
-        this.moverRectanguloIzquierdo(100);
-      }
-      //incrementar rectangulo 1 tecla S
+    document.addEventListener('keypress', (e) => {
+      var temp = 0;
+      //decrementar rectangulo 1 tecla S
       if (e.keyCode == 115) {
-        this.moverRectanguloIzquierdo(100);
+        this.rectIzq.actualizarEjeY();
+        this.moverRectanguloIzquierdo(this.rectIzq.y + 10);
       }
-      //decrementar rectangulo 2 tecla O
-      if (e.keyCode == 111) {
-        this.moverRectanguloDerecho(100);
+      //incrementar rectangulo 1 tecla W
+      if (e.keyCode == 119) {
+        this.rectIzq.actualizarEjeY();
+        this.moverRectanguloIzquierdo(this.rectIzq.y - 10);
       }
-      //incrementar rectangulo 2 tecla L
+      //decrementar rectangulo 2 tecla L
       if (e.keyCode == 108) {
-        this.moverRectanguloDerecho(100);
+        this.rectDer.actualizarEjeY();
+        this.moverRectanguloDerecho(this.rectDer.y + 10);
+      }
+      //incrementar rectangulo 2 tecla O
+      if (e.keyCode == 111) {
+        this.rectDer.actualizarEjeY();
+        this.moverRectanguloDerecho(this.rectDer.y - 10);
       }
     }, false);
   }
@@ -173,8 +182,6 @@ class Juego {
 window.onload = function() {
   console.log('carga');
   var juego = new Juego("pong");
-  juego.moverRectangulos();
-  //setInterval(juego.moverRectangulos, 10);
-  juego.moverRectanguloIzquierdo(517);
-  juego.moverRectanguloDerecho(1);
+  setInterval(juego.moverRectangulos(), 1000 / 60);
+
 }
