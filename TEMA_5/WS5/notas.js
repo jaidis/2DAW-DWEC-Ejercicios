@@ -14,15 +14,27 @@ class NotaVista {
   constructor(id = "") {
     var temp = "";
     var nota = "";
+    // Crear el elemento Nota
     nota = document.createElement('div');
     temp = document.createAttribute("id");
     temp.value = id;
     nota.setAttributeNode(temp);
     contenedor.appendChild(nota);
     this.id = document.getElementById(id);
-    this.nuevaNota();
+    // Crear elementos de la nota
+    temp = document.createElement("p");
+    temp.textContent = "Titulo";
+    this.id.appendChild(temp);
+    temp = document.createElement("p");
+    temp.textContent = "Cuerpo";
+    this.id.appendChild(temp);
+    temp = document.createElement("p");
+    temp.textContent = "Hora";
+    this.id.appendChild(temp);
+    this.parrafos = this.id.getElementsByTagName('p');
+    this.aplicarEstilo();
   }
-  nuevaNota() {
+  aplicarEstilo() {
     this.id.style.backgroundColor = "#ffd60a";
     this.id.style.cssFloat = "left";
     this.id.style.width = "300px";
@@ -44,6 +56,18 @@ class Controlador {
   anadirVistas(objetoVista = "") {
     this.contenedorVistas.push(objetoVista);
   }
+  construirNota(objetoNota = "")
+  {
+    for (var i=0; i<this.contenedorVistas.length;i++)
+    {
+      if (this.contenedorVistas[i].id.id == objetoNota.id)
+      {
+        this.contenedorVistas[i].parrafos[0].textContent = objetoNota.titulo;
+        this.contenedorVistas[i].parrafos[1].textContent = objetoNota.texto;
+        this.contenedorVistas[i].parrafos[2].textContent = objetoNota.hora;
+      }
+    }
+  }
 }
 
 
@@ -53,9 +77,10 @@ window.onload = function() {
   var notas = new Controlador();
   notas.anadirNotas(new Nota('Prueba 1', 'El texto'));
   notas.anadirNotas(new Nota('Prueba 2', 'El texto'));
-  console.log(notas.contenedorNotas);
   notas.anadirVistas(new NotaVista(notas.contenedorNotas[0].id));
+  notas.construirNota(notas.contenedorNotas[0]);
   notas.anadirVistas(new NotaVista(notas.contenedorNotas[1].id));
+  notas.construirNota(notas.contenedorNotas[1]);
+  console.log(notas.contenedorNotas);
   console.log(notas.contenedorVistas);
-
 }
