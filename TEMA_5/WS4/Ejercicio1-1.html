@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Partidos', 'Votos'],
+        ['PP', 137],
+        ['PSOE', 85],
+        ['CIU', 32],
+        ['ERC-CATSI', 9],
+        ['PODEMOS', 71],
+        ['CDC', 8],
+        ['PNV', 5],
+        ['EH Bildu', 2],
+        ['CCa-PNC', 1]
+      ]);
+      var data2 = google.visualization.arrayToDataTable([
+        ['Partidos', 'Votos'],
+        ['PP', 117],
+        ['PSOE', 85],
+        ['CIU', 52],
+        ['ERC-CATSI', 9],
+        ['PODEMOS', 71],
+        ['CDC', 5],
+        ['PNV', 5],
+        ['EH Bildu', 3],
+        ['CCa-PNC', 1]
+      ]);
+      var options = {
+        title: 'Votaciones 2016'
+      };
+
+      var options2 = {
+        title: 'Votaciones 2016',
+        animation: {
+          duration: 1000,
+          easing: 'out',
+          startup: true
+        }
+      }
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      var chart2 = new google.visualization.BarChart(document.getElementById('barchart'));
+      chart.draw(data, options);
+      chart2.draw(data, options);
+      setTimeout(function () {
+        chart2.draw(data2, options2);
+      }, 5000);
+
+
+    }
+  </script>
+</head>
+
+<body>
+  <div id="piechart" style="width: 640px; height: 480px;"></div>
+  <div id="barchart" style="width: 640px; height: 480px;"></div>
+</body>
+
+</html>

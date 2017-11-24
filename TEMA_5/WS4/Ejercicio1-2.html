@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['geochart'],
+      // Note: you will need to get a mapsApiKey for your project.
+      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+      var data = google.visualization.arrayToDataTable([
+        ['Country', 'Millions of Visits'],
+        ['France', 79.5],
+        ['United States', 62.7],
+        ['China', 57.6],
+        ['Spain', 56.7],
+        ['Italy', 46.1],
+        ['Turkey', 29.3],
+        ['United Kingdom', 29.2],
+        ['Germany', 28.4],
+        ['Malaysia', 24.7],
+        ['Mexico',23.4]
+      ]);
+
+      var options = {};
+
+      var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<body>
+  <div id="regions_div" style="width: 1900px; height: 900px;"></div>
+</body>
+
+</html>
