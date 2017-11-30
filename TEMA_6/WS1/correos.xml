@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<correos>
+  <correo>
+    <remitente>pepe</remitente>
+    <destinatario>juan</destinatario>
+    <asunto>reunion</asunto>
+    <mensaje>La reunion se hace mañana a la misma hora</mensaje>
+  </correo>
+  <correo>
+    <remitente>maria</remitente>
+    <destinatario>juan</destinatario>
+    <asunto>duda</asunto>
+    <mensaje>necesito ayuda sobre como hacer la o con un canuto</mensaje>
+  </correo>
+  <correo>
+    <remitente>juan</remitente>
+    <destinatario>pepe</destinatario>
+    <asunto>RE:reunion</asunto>
+    <mensaje>que te den, buscate una vida</mensaje>
+  </correo>
+  <correo>
+    <remitente>juan</remitente>
+    <destinatario>maria</destinatario>
+    <asunto>RE:duda</asunto>
+    <mensaje>me la pela, eres una inutil</mensaje>
+  </correo>
+</correos>
