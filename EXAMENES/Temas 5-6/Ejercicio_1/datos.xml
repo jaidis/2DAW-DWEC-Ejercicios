@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listaNoticias>
+  <noticia>
+    <titulo>Noticia 1</titulo>
+    <fecha>10/12/2017</fecha>
+    <texto>Contenido noticia 1</texto>
+    <imagen>portada.jpg</imagen>
+  </noticia>
+  <noticia>
+    <titulo>Noticia 2</titulo>
+    <fecha>12/12/2017</fecha>
+    <texto>Contenido noticia 2</texto>
+    <imagen>noticia2.jpg</imagen>
+  </noticia>
+</listaNoticias>
