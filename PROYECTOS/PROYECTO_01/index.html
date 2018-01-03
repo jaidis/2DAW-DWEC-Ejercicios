@@ -8,14 +8,54 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/api_omdb.js">
   </script>
-  <title>Test</title>
+  <title>OMDB's Api v0.1.2</title>
+  <style media="screen">
+    body{
+      background-color: #cacaca;
+    }
+    .busqueda{
+      width: 100%;
+    }
+    #cajaBuscar{
+      width: 100%;
+    }
+    #buscar{
+      width: 100%;
+      margin-top: 1em;
+    }
+    #mas{
+      width: 100%;
+      margin-top: 1em;
+    }
+    .muestraPeliculas
+    {
+      width: 100%;
+      margin-top: 1em;
+    }
+    .peliculas{
+      background-color: #aaaaaa;
+      display: inline-block;
+      margin: 0.1em;
+      width: 49%;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="busqueda">
-    <input id="cajaBuscar" type="text" name="busqueda">
+<div class="busqueda">
+    <input id="cajaBuscar" type="text" name="busqueda" value="batman">
     <button id="buscar" type="button" name="Buscar">Buscar</button>
     <button id="mas" type="button" name="Mas">Mas</button>
+  </div>
+  <div class="muestraPeliculas">
+
+  </div>
+
+  <div class="detalle">
+
+  </div>
+  <div class="cargando">
+
   </div>
 </body>
 

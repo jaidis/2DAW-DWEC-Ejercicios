@@ -4,7 +4,7 @@
 
 // console.log('Iniciando variables globales');
 var apiKey = '9d074a1f';
-var busqueda = 'lego';
+var busqueda = '';
 var jsonBusqueda = [];
 var jsonPelicula = [];
 var temp = '';
@@ -25,8 +25,9 @@ class Pelicula {
     this.imdbID = imdbID;
     this.poster = poster;
   }
-  extendido(calificacion = '', duracion = '', genero = '', director = '', sinopsis = '', puntuacion = '') {
+  extendido(calificacion = '', lanzamiento ='',duracion = '', genero = '', director = '', sinopsis = '', puntuacion = '') {
     this.calificacion = calificacion;
+    this.lanzamiento = lanzamiento;
     this.duracion = duracion;
     this.genero = genero;
     this.director = director;
@@ -65,7 +66,7 @@ function ajaxBusqueda(pagina = 1, tipo = 'movie') {
 function guardaPeliculas() {
   // console.log(jsonBusqueda.Search.length);
   for (var i = 0; i < jsonBusqueda.Search.length; i++) {
-    // console.log(jsonBusqueda.Search[i].imdbID);
+    console.log(jsonBusqueda.Search[i].imdbID);
     ajaxPelicula(jsonBusqueda.Search[i].imdbID);
   }
 }
@@ -91,11 +92,17 @@ function ajaxPelicula(imdbID) {
 }
 
 function crearPelicula() {
+  if (jsonPelicula.Poster== "N/A" || !(jsonPelicula.Poster))
+  {
+    jsonPelicula.Poster = "img/notfound.png";
+    console.log('sin foto');
+  }
   temp = new Pelicula(jsonPelicula.Title,
     jsonPelicula.Year,
     jsonPelicula.imdbID,
     jsonPelicula.Poster);
   temp.extendido(jsonPelicula.Rated,
+    jsonPelicula.Released,
     jsonPelicula.Runtime,
     jsonPelicula.Genre,
     jsonPelicula.Director,
@@ -103,6 +110,19 @@ function crearPelicula() {
     jsonPelicula.imdbRating)
   // console.log(temp);
   contenedorPeliculas.push(temp);
+}
+
+function maquetaPeliculas(inicio=0,fin=10)
+{
+  var padre = $('.muestraPeliculas');
+  for (inicio; inicio<fin; inicio++)
+  {
+    padre.append('<div class="peliculas" id="'+contenedorPeliculas[inicio].imdbID+'" >\
+    <img src="'+ contenedorPeliculas[inicio].poster+'"> \
+    <h2>'+contenedorPeliculas[inicio].titulo+'</h2>\
+    <p>' + contenedorPeliculas[inicio].fecha + '</p>\
+    </div>');
+  }
 }
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -121,6 +141,10 @@ $(document).ready(function() {
       contenedorPeliculas = [];
       ajaxBusqueda(contadorPaginas);
       contadorPaginas++;
+      $('.muestraPeliculas').empty();
+      setTimeout(function() {
+        maquetaPeliculas();
+      }, 1500);
     }
   });
   $('.busqueda').on('click', '#mas', function(event) {
@@ -129,6 +153,9 @@ $(document).ready(function() {
       ajaxBusqueda(contadorPaginas);
       contadorPaginas++;
     }
-
+    setTimeout(function() {
+      // console.log((contadorPaginas-2)*10,(contadorPaginas-1)*10);
+      maquetaPeliculas((contadorPaginas-2)*10,(contadorPaginas-1)*10);
+    }, 1500);
   });
 });
