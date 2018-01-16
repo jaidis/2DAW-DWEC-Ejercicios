@@ -11,6 +11,7 @@ export class ConsumeServicioComponent implements OnInit {
   constructor(private servicio: PruebaServicioService) { }
 
   ngOnInit() {
+    this.servicio.getDatos();
   }
 
 }

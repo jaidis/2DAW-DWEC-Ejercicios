@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ConsumeServicioComponent } from './consume-servicio/consume-servicio.component';
 import { PruebaServicioService } from './prueba-servicio.service';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { PruebaServicioService } from './prueba-servicio.service';
     ConsumeServicioComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [PruebaServicioService],
   bootstrap: [AppComponent]
