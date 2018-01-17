@@ -12,10 +12,10 @@
     <li *ngFor="let elementos of servicio.datos.Search">{{elementos}}</li>
 </ul> -->
 
-<h3>Prueba de acceder a una cerveza</h3>
+<h3 (click)="onSolicitarCerveza()">Prueba de acceder a una cerveza (pinchar aquí para cargar una cerveza de ejemplo)</h3>
 
 <ul>
-  <li *ngIf="servicio.datos.data"><img src="{{servicio.datos.data.labels.medium}}" alt=""></li>
+  <li *ngIf="servicio.datos.data"><img src="{{servicio.datos.data.labels.medium}}" alt="{{servicio.datos.data.name}}" (click)="onSeleccionarCervezaImagen(servicio.datos.data)"></li>
   <li *ngIf="servicio.datos.data">{{servicio.datos.data.name}}</li>
   <li *ngIf="servicio.datos.data">{{servicio.datos.data.nameDisplay}}</li>
   <li *ngIf="servicio.datos.data">{{servicio.datos.data.id}}</li>
