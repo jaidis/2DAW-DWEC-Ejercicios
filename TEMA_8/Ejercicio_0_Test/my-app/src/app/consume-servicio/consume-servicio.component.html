@@ -8,6 +8,16 @@
   <li *ngFor="let datos of servicio.cars">{{datos}}</li>
 </ul>
 
+<!-- <ul>
+    <li *ngFor="let elementos of servicio.datos.Search">{{elementos}}</li>
+</ul> -->
+
+<h3>Prueba de acceder a una cerveza</h3>
+
 <ul>
-  <li>{{servicio.datos.Response}}</li>
+  <li *ngIf="servicio.datos.data"><img src="{{servicio.datos.data.labels.medium}}" alt=""></li>
+  <li *ngIf="servicio.datos.data">{{servicio.datos.data.name}}</li>
+  <li *ngIf="servicio.datos.data">{{servicio.datos.data.nameDisplay}}</li>
+  <li *ngIf="servicio.datos.data">{{servicio.datos.data.id}}</li>
+  <li *ngIf="servicio.datos.data">{{servicio.datos.data.description}}</li>
 </ul>
