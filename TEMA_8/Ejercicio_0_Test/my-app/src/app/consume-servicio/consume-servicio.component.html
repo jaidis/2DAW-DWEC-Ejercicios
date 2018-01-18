@@ -12,12 +12,24 @@
     <li *ngFor="let elementos of servicio.datos.Search">{{elementos}}</li>
 </ul> -->
 
-<h3 (click)="onSolicitarCerveza()">Prueba de acceder a una cerveza (pinchar aquí para cargar una cerveza de ejemplo)</h3>
+<h3 (click)="onSolicitarCerveza('d2l7om')">Prueba de acceder a una cerveza (pinchar aquí para cargar una cerveza de ejemplo)</h3>
 
 <ul>
   <li *ngIf="servicio.datos.data"><img src="{{servicio.datos.data.labels.medium}}" alt="{{servicio.datos.data.name}}" (click)="onSeleccionarCervezaImagen(servicio.datos.data)"></li>
-  <li *ngIf="servicio.datos.data">{{servicio.datos.data.name}}</li>
-  <li *ngIf="servicio.datos.data">{{servicio.datos.data.nameDisplay}}</li>
-  <li *ngIf="servicio.datos.data">{{servicio.datos.data.id}}</li>
-  <li *ngIf="servicio.datos.data">{{servicio.datos.data.description}}</li>
+  <li *ngIf="servicio.datos.data">data.name -> {{servicio.datos.data.name}}</li>
+  <li *ngIf="servicio.datos.data">data.nameDisplay -> {{servicio.datos.data.nameDisplay}}</li>
+  <li *ngIf="servicio.datos.data">data.id -> {{servicio.datos.data.id}}</li>
+  <li *ngIf="servicio.datos.data">data.description -> {{servicio.datos.data.description}}</li>
+</ul>
+
+<h3 (click)="onSolicitarCervezera()">Prueba de acceder a una cervezera (pinchar aquí para cargar una cerveza de ejemplo)</h3>
+
+<ul>
+  <li *ngIf="servicio.cervezera">data.images.medium -> <img src="{{servicio.cervezera.data.images.medium}}" alt="{{servicio.cervezera.data.name}}"></li>
+  <li *ngIf="servicio.cervezera">data.images.squareMedium -> {{servicio.cervezera.data.images.squareMedium}}</li>
+  <li *ngIf="servicio.cervezera">data.id -> {{servicio.cervezera.data.id}}</li>
+  <li *ngIf="servicio.cervezera">data.name -> {{servicio.cervezera.data.name}}</li>
+  <li *ngIf="servicio.cervezera">data.established -> {{servicio.cervezera.data.established}}</li>
+  <li *ngIf="servicio.cervezera">data.description -> {{servicio.cervezera.data.description}}</li>
+  <li *ngIf="servicio.cervezera">data.website -> {{servicio.cervezera.data.website}}</li>
 </ul>

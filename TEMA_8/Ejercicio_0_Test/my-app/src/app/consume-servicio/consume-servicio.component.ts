@@ -11,11 +11,15 @@ export class ConsumeServicioComponent implements OnInit {
   constructor(private servicio: PruebaServicioService) { }
 
   ngOnInit() {
-
+    // this.servicio.getCervezera();
   }
 
-  onSolicitarCerveza() {
-    this.servicio.getDatos();
+  onSolicitarCerveza(idCerveza:string) {
+    this.servicio.getDatos(idCerveza);
+  }
+
+  onSolicitarCervezera() {
+    this.servicio.getCervezera();
   }
 
   onSeleccionarCervezaImagen(servicio) {

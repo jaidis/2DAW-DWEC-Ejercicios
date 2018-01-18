@@ -13,6 +13,7 @@ export class PruebaServicioService {
   apiBusqueda: string;
 
   datos: object;
+  cervezera: object;
 
   constructor(private contenedorAjax: HttpClient) {
     this.datos = [];
@@ -20,10 +21,12 @@ export class PruebaServicioService {
     this.apiCabecera = 'https://api.brewerydb.com/v2/';
     this.apiKey = '?key=735852ebc132a2ac2b9c12c8a9ddd37d';
     this.apiFormato = '&format=json';
-    this.apiBusqueda = 'beer/eGtqKZ';
+    this.apiBusqueda = '';
   }
 
-  getDatos() {
+  getDatos(idCerveza: string) {
+    this.apiBusqueda = "beer/" + idCerveza;
+    console.log(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato)
     this.contenedorAjax.get(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato).subscribe(data => {
       console.log('Se ha cursado correctamente la petición GET');
       console.log(data);
@@ -33,6 +36,16 @@ export class PruebaServicioService {
     //   console.log(data);
     //   this.datos = data;
     // });
+  }
+
+  getCervezera() {
+    this.apiBusqueda = "brewery/robMSl";
+    console.log(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato);
+    this.contenedorAjax.get(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato).subscribe(data => {
+      console.log('Se ha cursado correctamente la petición GET');
+      console.log(data);
+      this.cervezera = data;
+    });
   }
 
 }
