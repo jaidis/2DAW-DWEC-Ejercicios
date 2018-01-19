@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  version:string;
+
+  constructor() {
+
+  this.version = "v0.0.4";}
 
   ngOnInit() {
   }

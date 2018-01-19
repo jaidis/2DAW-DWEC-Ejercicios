@@ -1,3 +1,25 @@
-<p>
-  body works!
-</p>
+<div class="container mt-5">
+  <div class="jumbotron text-center">
+    <h2 class="display-4">BreweryDB!</h2>
+    <p class="lead">Una web para consultar cervezas (no se admite cruzcampo)</p>
+    <!-- <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p> -->
+  </div>
+  <h2 class="display-5 text-center">Ranking de cervezas preferidas</h2>
+  <div class="row text-center mt-5">
+    <div class="col-lg-3 col-md-6 mb-4" *ngFor="let cerveza of cervezasDelMundo">
+      <div class="card">
+        <img class="card-img-top mt-1" src="{{cerveza[2]}}" alt="">
+        <div class="card-body">
+          <h4 class="card-title">{{cerveza[0]}}</h4>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-success">{{cerveza[1]}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
