@@ -8,18 +8,41 @@
       <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
     </p> -->
   </div>
-  <h2 class="display-5 text-center">Ranking de cervezas preferidas</h2>
-  <div class="row text-center mt-5">
-    <div class="col-lg-3 col-md-6 mb-4" *ngFor="let cerveza of cervezasDelMundo">
-      <div class="card">
-        <img class="card-img-top mt-1" src="{{cerveza[2]}}" alt="">
-        <div class="card-body">
-          <h4 class="card-title">{{cerveza[0]}}</h4>
+  <div class="row mt-2">
+    <div class="col-12">
+      <h3 class="text-warning mb-4 text-center">¡AH! Amada cerveza, dulce elexir que nos evoca a una estado de placer y bienestar cuando te introducimos garganta abajo</h3>
+      <blockquote class="blockquote">
+        <p class="mb-0"><strong>La cerveza,</strong> de ella se conocen múltiples variantes con una amplia gama de matices debidos a las diferentes formas de elaboración y a los ingredientes utilizados. Generalmente presenta un color ambarino con tonos que van del amarillo
+          oro al negro pasando por los marrones rojizos. Se la considera «gaseosa» (contiene CO2 disuelto en saturación que se manifiesta en forma de burbujas a la presión ambiente) y suele estar coronada de una espuma más o menos persistente. Su aspecto
+          puede ser cristalino o turbio. Su graduación alcohólica puede alcanzar hasta cerca de los 30 % vol., aunque principalmente se encuentra entre los 3 % y los 9 % vol.</p>
+        <footer class="blockquote-footer text-right">Definición sacada de la <cite title="Wikipedia">Wikipedia</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <!-- Carousel -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="3500">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="../../assets/img/01.jpg" alt="First slide">
         </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-success">{{cerveza[1]}}</a>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../../assets/img/02.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../../assets/img/03.jpg" alt="Third slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../../assets/img/04.jpg" alt="Fourth slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../../assets/img/05.jpg" alt="Fifth slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../../assets/img/06.jpg" alt="Sixth slide">
         </div>
       </div>
     </div>
+    <!-- /.row -->
   </div>
 </div>

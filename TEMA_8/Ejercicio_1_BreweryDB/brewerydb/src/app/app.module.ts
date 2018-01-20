@@ -13,10 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CerveceriaComponent } from './cerveceria/cerveceria.component';
 import { CervezaComponent } from './cerveza/cerveza.component';
+import { ListaCervezasComponent } from './lista-cervezas/lista-cervezas.component';
 
 //routas del sitio web BreweryDB
 const routes: Routes = [
   { path: '', component: BodyComponent },
+  { path: 'listaCervezas', component: ListaCervezasComponent },
   { path: 'plantilla', component: TemplateComponent },
   { path: 'cerveceria', component: CerveceriaComponent },
   { path: 'cerveza', component: CervezaComponent },
@@ -33,7 +35,8 @@ export const routing = RouterModule.forRoot(routes);
     FooterComponent,
     TemplateComponent,
     CerveceriaComponent,
-    CervezaComponent
+    CervezaComponent,
+    ListaCervezasComponent
   ],
   imports: [
     BrowserModule,
