@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   constructor() {
 
-  this.version = "v0.0.5";}
+  this.version = "v0.0.6";}
 
   ngOnInit() {
   }

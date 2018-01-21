@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioApiService } from '../servicios/servicio-api.service';
 
 @Component({
   selector: 'app-lista-cervezas',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaCervezasComponent implements OnInit {
   cervezasDelMundo: Array<Array<string>>;
-  constructor() {
+  constructor(private servicio: ServicioApiService) {
     this.cervezasDelMundo = [
       ['Heineken', 'eGtqKZ', 'https://s3.amazonaws.com/brewerydbapi/beer/eGtqKZ/upload_7HtBRP-large.png'],
       ['Budweiser', '1P45iR', 'https://s3.amazonaws.com/brewerydbapi/beer/1P45iR/upload_Y13vwL-large.png'],
@@ -25,6 +26,10 @@ export class ListaCervezasComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onSolicitarCerveza(idCerveza: string) {
+    this.servicio.getCerveza(idCerveza);
   }
 
 }

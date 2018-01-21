@@ -14,6 +14,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CerveceriaComponent } from './cerveceria/cerveceria.component';
 import { CervezaComponent } from './cerveza/cerveza.component';
 import { ListaCervezasComponent } from './lista-cervezas/lista-cervezas.component';
+import { ServicioApiService } from './servicios/servicio-api.service';
 
 //routas del sitio web BreweryDB
 const routes: Routes = [
@@ -43,7 +44,7 @@ export const routing = RouterModule.forRoot(routes);
     HttpClientModule,
     routing
   ],
-  providers: [],
+  providers: [ServicioApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

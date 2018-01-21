@@ -11,7 +11,7 @@
             <h4 class="card-title">{{cerveza[0]}}</h4>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-success">{{cerveza[1]}}</a>
+            <button class="btn btn-success" [routerLink]="['/cerveza']" (click)="onSolicitarCerveza(cerveza[1])">+</button>
           </div>
         </div>
       </div>

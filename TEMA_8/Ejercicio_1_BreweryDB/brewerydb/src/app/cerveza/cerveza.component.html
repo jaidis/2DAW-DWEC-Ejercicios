@@ -1,17 +1,22 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row">
-    <div class="col-md-4">
-      <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+    <div class="col-md-5" *ngIf="servicio.objetoCerveza.data">
+      <img class="card-img-top" *ngIf="servicio.objetoCerveza.data" src="{{servicio.objetoCerveza.data.labels.large}}" alt="{{servicio.objetoCerveza.data.name}}">
     </div>
-    <div class="col-md-8">
-      <h3 class="my-3">Project Description</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-      <h3 class="my-3">Project Details</h3>
-      <ul>
-        <li>Lorem Ipsum</li>
-        <li>Dolor Sit Amet</li>
-        <li>Consectetur</li>
-        <li>Adipiscing Elit</li>
+    <div class="col-md-7">
+      <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.name}}</h3>
+      <p *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.description}}</p>
+      <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">Información detallada</h3>
+      <ul *ngIf="servicio.objetoCerveza.data">
+        <li *ngIf="servicio.objetoCerveceria"><strong class="mr-2">Fabricante:</strong>
+            <button class="btn btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data">{{servicio.objetoCerveceria.data[0].name}}</button>
+        </li>
+        <li *ngIf="servicio.objetoCerveza.data.style"><strong>Tipo de cerveza: </strong>{{servicio.objetoCerveza.data.style.name}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.abv"><strong>Alcohol: </strong>{{servicio.objetoCerveza.data.abv}}%</li>
+        <li *ngIf="servicio.objetoCerveza.data.servingTemperatureDisplay"><strong>Preferencias de consumición: </strong>{{servicio.objetoCerveza.data.servingTemperatureDisplay}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.available"><strong>Disponibilidad: </strong>{{servicio.objetoCerveza.data.available.description}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.isOrganic"><strong>Orgánica: </strong>{{servicio.objetoCerveza.data.isOrganic}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.srm"><strong>Tonalidad aproximada (Valor Hexadecimal): </strong>#{{servicio.objetoCerveza.data.srm.hex}}</li>
       </ul>
     </div>
   </div>
