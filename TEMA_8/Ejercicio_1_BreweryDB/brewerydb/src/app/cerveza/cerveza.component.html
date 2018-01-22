@@ -1,23 +1,32 @@
 <div class="container mt-5 mb-5">
-  <div class="row">
-    <div class="col-md-5" *ngIf="servicio.objetoCerveza.data">
+  <div class="row" *ngIf="servicio.objetoCervezaVisible">
+    <div class="col-md-4" *ngIf="servicio.objetoCerveza.data">
       <img class="card-img-top" *ngIf="servicio.objetoCerveza.data" src="{{servicio.objetoCerveza.data.labels.large}}" alt="{{servicio.objetoCerveza.data.name}}">
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8">
       <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.name}}</h3>
       <p *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.description}}</p>
+      <div class="col-md-12 p-0 mt-2 mb-2" *ngIf="servicio.objetoCerveceria">
+        <h3 class="my-3">Cervecería</h3>
+        <button class="btn btn-block btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data" (click)="servicio.getCerveceria(servicio.objetoCerveceria.data[0].id)">{{servicio.objetoCerveceria.data[0].name}}</button>
+      </div>
+      <div class="col-md-12 p-0 mt-2 mb-2" *ngIf="servicio.objetoTipo">
+        <h3 class="my-3">Tipo de Cerveza</h3>
+        <button class="btn btn-block btn-success" [routerLink]="['/tipo']" *ngIf="servicio.objetoTipo.data">{{servicio.objetoTipo.data.name}}</button>
+      </div>
       <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">Información detallada</h3>
       <ul *ngIf="servicio.objetoCerveza.data">
-        <li *ngIf="servicio.objetoCerveceria"><strong class="mr-2">Fabricante:</strong>
-            <button class="btn btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data">{{servicio.objetoCerveceria.data[0].name}}</button>
-        </li>
-        <li *ngIf="servicio.objetoCerveza.data.style"><strong>Tipo de cerveza: </strong>{{servicio.objetoCerveza.data.style.name}}</li>
         <li *ngIf="servicio.objetoCerveza.data.abv"><strong>Alcohol: </strong>{{servicio.objetoCerveza.data.abv}}%</li>
         <li *ngIf="servicio.objetoCerveza.data.servingTemperatureDisplay"><strong>Preferencias de consumición: </strong>{{servicio.objetoCerveza.data.servingTemperatureDisplay}}</li>
         <li *ngIf="servicio.objetoCerveza.data.available"><strong>Disponibilidad: </strong>{{servicio.objetoCerveza.data.available.description}}</li>
         <li *ngIf="servicio.objetoCerveza.data.isOrganic"><strong>Orgánica: </strong>{{servicio.objetoCerveza.data.isOrganic}}</li>
-        <li *ngIf="servicio.objetoCerveza.data.srm"><strong>Tonalidad aproximada (Valor Hexadecimal): </strong>#{{servicio.objetoCerveza.data.srm.hex}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.srm"><strong>Grado SRM: </strong>{{servicio.objetoCerveza.data.srm.name}}</li>
       </ul>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12" *ngIf="!servicio.objetoCervezaVisible">
+      <img class="img-fluid rounded" alt="" src="assets/img/cargando.png">
   </div>
 </div>

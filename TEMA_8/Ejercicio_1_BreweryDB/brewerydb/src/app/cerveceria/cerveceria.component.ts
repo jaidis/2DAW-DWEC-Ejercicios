@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioApiService } from '../servicios/servicio-api.service';
 
 @Component({
   selector: 'app-cerveceria',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CerveceriaComponent implements OnInit {
 
-  constructor() { }
+  constructor(public servicio: ServicioApiService) { }
 
   ngOnInit() {
+  }
+
+  ngDoCheck() {
+    if (this.servicio.objetoCerveceria) {
+      this.servicio.objetoCerveceriaVisible = true;
+    }
+  }
+
+  ngOnDestroy()
+  {
+    this.servicio.objetoCerveceria = false;
+    this.servicio.objetoCerveceriaVisible = false;
   }
 
 }

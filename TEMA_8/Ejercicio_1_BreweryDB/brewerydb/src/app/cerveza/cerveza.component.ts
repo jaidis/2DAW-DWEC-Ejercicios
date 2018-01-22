@@ -8,11 +8,23 @@ import { ServicioApiService } from '../servicios/servicio-api.service';
 })
 export class CervezaComponent implements OnInit {
 
-  constructor(private servicio: ServicioApiService) {
+  constructor(public servicio: ServicioApiService) {
 
   }
 
   ngOnInit() {
+    this.servicio.objetoCerveza = false;
+  }
+
+  ngDoCheck() {
+    if (this.servicio.objetoCerveza.data) {
+      this.servicio.objetoCervezaVisible = true;
+    }
+  }
+
+  ngOnDestroy() {
+    this.servicio.objetoCerveza = false;
+    this.servicio.objetoCervezaVisible = false;
   }
 
 }

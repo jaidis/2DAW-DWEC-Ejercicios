@@ -1,3 +1,21 @@
-<p>
-  cerveceria works!
-</p>
+<div class="container mt-5 mb-5">
+  <div class="row" *ngIf="servicio.objetoCerveceriaVisible">
+    <div class="col-md-4" *ngIf="servicio.objetoCerveceria.data">
+      <img class="card-img-top" *ngIf="servicio.objetoCerveceria.data.images" src="{{servicio.objetoCerveceria.data.images.squareLarge}}" alt="{{servicio.objetoCerveceria.data.name}}">
+    </div>
+    <div class="col-md-8">
+      <h3 class="my-3" *ngIf="servicio.objetoCerveceria.data">{{servicio.objetoCerveceria.data.name}}</h3>
+      <p *ngIf="servicio.objetoCerveceria.data">{{servicio.objetoCerveceria.data.description}}</p>
+      <h3 class="my-3" *ngIf="servicio.objetoCerveceria.data">Información detallada</h3>
+      <ul *ngIf="servicio.objetoCerveceria.data">
+        <li *ngIf="servicio.objetoCerveceria.data.established"><strong>Fecha de Fundación: </strong>{{servicio.objetoCerveceria.data.established}}</li>
+        <li *ngIf="servicio.objetoCerveceria.data.website"><strong>Dirección web: </strong> <a href="{{servicio.objetoCerveceria.data.website}}">{{servicio.objetoCerveceria.data.website}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="!servicio.objetoCerveceriaVisible">
+      <img class="img-fluid rounded" alt="" src="assets/img/cargando.png">
+    </div>
+  </div>
+</div>
