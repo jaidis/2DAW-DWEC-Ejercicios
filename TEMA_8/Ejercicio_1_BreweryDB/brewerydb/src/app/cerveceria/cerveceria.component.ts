@@ -25,4 +25,8 @@ export class CerveceriaComponent implements OnInit {
     this.servicio.objetoCerveceriaVisible = false;
   }
 
+  onSolicitarCerveza(idCerveza: string) {
+    this.servicio.getCerveza(idCerveza);
+  }
+
 }

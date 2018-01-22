@@ -1,14 +1,15 @@
 <div class="container mt-5 mb-5">
   <div class="row" *ngIf="servicio.objetoCervezaVisible">
     <div class="col-md-4" *ngIf="servicio.objetoCerveza.data">
-      <img class="card-img-top" *ngIf="servicio.objetoCerveza.data" src="{{servicio.objetoCerveza.data.labels.large}}" alt="{{servicio.objetoCerveza.data.name}}">
+      <img class="card-img-top" *ngIf="servicio.objetoCerveza.data.labels" src="{{servicio.objetoCerveza.data.labels.large}}" alt="{{servicio.objetoCerveza.data.name}}">
+      <img class="card-img-top" *ngIf="!servicio.objetoCerveza.data.labels" src="assets/img/not-found.jpg" alt="{{servicio.objetoCerveza.data.name}}">
     </div>
     <div class="col-md-8">
       <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.name}}</h3>
       <p *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.description}}</p>
       <div class="col-md-12 p-0 mt-2 mb-2" *ngIf="servicio.objetoCerveceria">
         <h3 class="my-3">Cervecería</h3>
-        <button class="btn btn-block btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data" (click)="servicio.getCerveceria(servicio.objetoCerveceria.data[0].id)">{{servicio.objetoCerveceria.data[0].name}}</button>
+        <button class="btn btn-block btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data" (click)="onSolicitarCerveceria(servicio.objetoCerveceria.data[0].id)">{{servicio.objetoCerveceria.data[0].name}}</button>
       </div>
       <div class="col-md-12 p-0 mt-2 mb-2" *ngIf="servicio.objetoTipo">
         <h3 class="my-3">Tipo de Cerveza</h3>

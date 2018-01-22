@@ -11,6 +11,10 @@ export class CervezaComponent implements OnInit {
   constructor(public servicio: ServicioApiService) {
 
   }
+  onSolicitarCerveceria(idCerveceria:string)
+  {
+    this.servicio.getCerveceria(idCerveceria);
+  }
 
   ngOnInit() {
     this.servicio.objetoCerveza = false;

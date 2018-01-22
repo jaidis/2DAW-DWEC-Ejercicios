@@ -13,6 +13,25 @@
       </ul>
     </div>
   </div>
+  <div class="row mt-2" *ngIf="servicio.objetoCerveceriaVisible">
+      <div class="col-12 text-center">
+        <h2 class="display-5" *ngIf="servicio.objetoCerveceria.data">Cervezas de {{servicio.objetoCerveceria.data.name}}</h2>
+      </div>
+      <div class="row text-center mt-5">
+        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let cerveza of servicio.objetoListaCervezas">
+          <div class="card">
+            <img class="card-img-top mt-1" *ngIf="cerveza.labels" src="{{cerveza.labels.large}}" alt="">
+            <img class="card-img-top mt-1" *ngIf="!cerveza.labels" src="assets/img/not-found.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">{{cerveza.name}}</h4>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-success" [routerLink]="['/cerveza']" (click)="onSolicitarCerveza(cerveza.id)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
   <div class="row">
     <div class="col-12" *ngIf="!servicio.objetoCerveceriaVisible">
       <img class="img-fluid rounded" alt="" src="assets/img/cargando.png">

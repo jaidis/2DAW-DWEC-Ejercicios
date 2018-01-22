@@ -63,6 +63,7 @@ export class ServicioApiService {
   }
 
   getCerveceria(idCerveceria: string) {
+    this.objetoListaCervezas = [];
     this.apiBusqueda = "brewery/" + idCerveceria;
     // console.log(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato)
     this.contenedorAjax.get(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato).subscribe(data => {
