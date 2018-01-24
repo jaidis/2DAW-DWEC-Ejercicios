@@ -5,23 +5,63 @@
       <img class="card-img-top" *ngIf="!servicio.objetoCerveza.data.labels" src="assets/img/not-found.jpg" alt="{{servicio.objetoCerveza.data.name}}">
     </div>
     <div class="col-md-8">
-      <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.name}}</h3>
+      <h3 class="my-4" *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.name}}</h3>
       <p *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.description}}</p>
-      <div class="col-md-12 p-0 mt-2 mb-2" *ngIf="servicio.objetoCerveceria">
-        <h3 class="my-3">Cervecería</h3>
+      <div class="col-md-12 p-0 my-4" *ngIf="servicio.objetoCerveceria">
+        <h3 class="my-4">Cervecería</h3>
         <button class="btn btn-block btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data" (click)="onSolicitarCerveceria(servicio.objetoCerveceria.data[0].id)">{{servicio.objetoCerveceria.data[0].name}}</button>
       </div>
-      <div class="col-md-12 p-0 mt-2 mb-2" *ngIf="servicio.objetoTipo">
-        <h3 class="my-3">Tipo de Cerveza</h3>
-        <button class="btn btn-block btn-success" [routerLink]="['/tipo']" *ngIf="servicio.objetoTipo.data">{{servicio.objetoTipo.data.name}}</button>
+      <div class="col-md-12 p-0 my-4" *ngIf="servicio.objetoCerveza.data">
+        <h3 class="my-4">Tipo de Cerveza</h3>
+        <!-- <button class="btn btn-block btn-success" [routerLink]="['/tipo']" *ngIf="servicio.objetoTipo.data">{{servicio.objetoTipo.data.name}}</button> -->
+        <button class="btn btn-block btn-success" *ngIf="servicio.objetoCerveza.data" type="button" data-toggle="collapse" data-target="#tipoCervezas" aria-expanded="false" aria-controls="tipoCervezas">{{servicio.objetoCerveza.data.style.name}}</button>
+        <div class="collapse" id="tipoCervezas" *ngIf="servicio.objetoCerveza.data">
+          <div class="card card-body">
+            <p><em>{{servicio.objetoCerveza.data.style.description}}</em></p>
+          </div>
+        </div>
       </div>
-      <h3 class="my-3" *ngIf="servicio.objetoCerveza.data">Información detallada</h3>
+      <h3 class="my-4" *ngIf="servicio.objetoCerveza.data">Conceptos básicos sobre las cervezas</h3>
+      <p class="my-4">
+        <button class="btn btn-block btn-success" type="button" data-toggle="collapse" data-target="#conceptosCervezas" aria-expanded="false" aria-controls="conceptosCervezas">Desplegar información</button>
+      </p>
+      <div class="collapse" id="conceptosCervezas">
+        <div class="card card-body">
+          <p>
+            <strong class="text-warning">Alcohol: </strong><em>indica el porcentaje de alcohol que contiene una cerveza</em>
+          </p>
+          <p>
+            <strong class="text-success"><abbr title="Standard Reference Method">Grado SRM:</abbr> </strong><em>valor numérico que se asocia a una tonalidad de la cerveza. Si su valor es bajo se asocia a una tonalidad suave
+              y si su valor es alto se asocia con una tonalidad mas oscura. <a href="http://www.twobeerdudes.com/beer/srm">Si desea mas información al respecto pinche en este enlace</a> </em>
+          </p>
+          <p>
+            <strong class="text-warning"><abbr title="International Bitterness Unit ">Grado IBU:</abbr> </strong><em>valor númerico que se asocia al amargor de la cerveza. Si su valor es bajo se asocia a un sabor suave
+            y si su valor es alto es asocia a un sabor mas amargo <a href="https://www.thebrewenthusiast.com/ibus">Si desea mas información al respecto pinche en este enlace</a> </em>
+          </p>
+          <p>
+            <strong class="text-success">Orgánica: </strong><em>indica si los ingredientes que componen la cerveza son sólo de origen orgánico</em>
+          </p>
+          <p>
+            <strong class="text-warning">Disponibilidad: </strong><em>indica la disponibilidad de una cerveza a lo largo del año, ya sea como cerveza residente o por un periodo determinado en el año (por ejemplo debido a un evento festivo)</em>
+          </p>
+          <p>
+            <strong class="text-success">Preferencias de consumición: </strong><em>indica la temperatura de como ha de servirse para su consumo óptimo, no todas las cervezas han de servirse frías y ni tampoco calientes, por eso es necesario conocer
+            la temperatura óptima para consumir dicha cerveza sin perder sus propiedades por una temperatura incorrecta</em>
+          </p>
+          <p>
+            <strong class="text-warning">Servir preferentemente: </strong><em>indica el vaso "óptimo" donde se ha de servir la cerveza. Existen diversos tipos de vasos y cada vaso tiene unas características que permite obtener el mejor resultado</em>
+          </p>
+        </div>
+      </div>
+      <h3 class="my-4" *ngIf="servicio.objetoCerveza.data">Información detallada</h3>
       <ul *ngIf="servicio.objetoCerveza.data">
         <li *ngIf="servicio.objetoCerveza.data.abv"><strong>Alcohol: </strong>{{servicio.objetoCerveza.data.abv}}%</li>
-        <li *ngIf="servicio.objetoCerveza.data.servingTemperatureDisplay"><strong>Preferencias de consumición: </strong>{{servicio.objetoCerveza.data.servingTemperatureDisplay}}</li>
-        <li *ngIf="servicio.objetoCerveza.data.available"><strong>Disponibilidad: </strong>{{servicio.objetoCerveza.data.available.description}}</li>
-        <li *ngIf="servicio.objetoCerveza.data.isOrganic"><strong>Orgánica: </strong>{{servicio.objetoCerveza.data.isOrganic}}</li>
         <li *ngIf="servicio.objetoCerveza.data.srm"><strong>Grado SRM: </strong>{{servicio.objetoCerveza.data.srm.name}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.ibu"><strong>Grado IBU: </strong>{{servicio.objetoCerveza.data.ibu}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.isOrganic"><strong>Orgánica: </strong>{{servicio.objetoCerveza.data.isOrganic}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.available"><strong>Disponibilidad: </strong>{{servicio.objetoCerveza.data.available.description}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.servingTemperatureDisplay"><strong>Preferencias de consumición: </strong>{{servicio.objetoCerveza.data.servingTemperatureDisplay}}</li>
+        <li *ngIf="servicio.objetoCerveza.data.glass"><strong>Servir preferentemente: </strong>{{servicio.objetoCerveza.data.glass.name}}</li>
       </ul>
     </div>
   </div>
@@ -29,5 +69,8 @@
   <div class="row">
     <div class="col-12" *ngIf="!servicio.objetoCervezaVisible">
       <img class="img-fluid rounded" alt="" src="assets/img/cargando.png">
+    </div>
   </div>
+
+
 </div>

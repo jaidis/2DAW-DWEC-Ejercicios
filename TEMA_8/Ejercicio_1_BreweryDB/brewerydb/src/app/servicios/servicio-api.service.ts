@@ -11,7 +11,7 @@ export class ServicioApiService {
   objetoCerveza: any;
   objetoCerveceria: any;
   objetoListaCervezas: any;
-  objetoTipo: any;
+  // objetoTipo: any;
   objetoCervezaVisible: boolean;
   objetoCerveceriaVisible: boolean;
 
@@ -36,7 +36,7 @@ export class ServicioApiService {
       this.objetoCerveza = data;
       // console.log('Se ha obtenido la cerveza correctamente');
       this.getCervezaCerveceria(idCerveza);
-      this.getTipo(this.objetoCerveza.data.style.id);
+      // this.getTipo(this.objetoCerveza.data.style.id);
       this.objetoCerveza.objetoCervezaVisible = true;
       // console.log(idCerveza);
     });
@@ -52,15 +52,15 @@ export class ServicioApiService {
     });
   }
 
-  getTipo(idTipo: string) {
-    this.apiBusqueda = "style/" + idTipo;
-    // console.log(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato)
-    this.contenedorAjax.get(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato).subscribe(data => {
-      console.log(data);
-      this.objetoTipo = data;
-      // console.log('Se ha obtenido el tipo o estilo de la cerveza correctamente');
-    });
-  }
+  // getTipo(idTipo: string) {
+  //   this.apiBusqueda = "style/" + idTipo;
+  //   // console.log(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato)
+  //   this.contenedorAjax.get(this.apiAntonio + this.apiCabecera + this.apiBusqueda + this.apiKey + this.apiFormato).subscribe(data => {
+  //     console.log(data);
+  //     this.objetoTipo = data;
+  //     // console.log('Se ha obtenido el tipo o estilo de la cerveza correctamente');
+  //   });
+  // }
 
   getCerveceria(idCerveceria: string) {
     this.objetoListaCervezas = [];
