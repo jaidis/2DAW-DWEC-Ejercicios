@@ -9,12 +9,12 @@
       <p *ngIf="servicio.objetoCerveza.data">{{servicio.objetoCerveza.data.description}}</p>
       <div class="col-md-12 p-0 my-4" *ngIf="servicio.objetoCerveceria">
         <h3 class="my-4">Cervecería</h3>
-        <button class="btn btn-block btn-success" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data" (click)="onSolicitarCerveceria(servicio.objetoCerveceria.data[0].id)">{{servicio.objetoCerveceria.data[0].name}}</button>
+        <button class="btn btn-block btn-primary" [routerLink]="['/cerveceria']" *ngIf="servicio.objetoCerveceria.data" (click)="onSolicitarCerveceria(servicio.objetoCerveceria.data[0].id)">{{servicio.objetoCerveceria.data[0].name}}</button>
       </div>
       <div class="col-md-12 p-0 my-4" *ngIf="servicio.objetoCerveza.data">
         <h3 class="my-4">Tipo de Cerveza</h3>
         <!-- <button class="btn btn-block btn-success" [routerLink]="['/tipo']" *ngIf="servicio.objetoTipo.data">{{servicio.objetoTipo.data.name}}</button> -->
-        <button class="btn btn-block btn-success" *ngIf="servicio.objetoCerveza.data" type="button" data-toggle="collapse" data-target="#tipoCervezas" aria-expanded="false" aria-controls="tipoCervezas">{{servicio.objetoCerveza.data.style.name}}</button>
+        <button class="btn btn-block btn-warning" *ngIf="servicio.objetoCerveza.data" type="button" data-toggle="collapse" data-target="#tipoCervezas" aria-expanded="false" aria-controls="tipoCervezas">{{servicio.objetoCerveza.data.style.name}}</button>
         <div class="collapse" id="tipoCervezas" *ngIf="servicio.objetoCerveza.data">
           <div class="card card-body">
             <p><em>{{servicio.objetoCerveza.data.style.description}}</em></p>
@@ -28,7 +28,7 @@
       <div class="collapse" id="conceptosCervezas">
         <div class="card card-body">
           <p>
-            <strong class="text-warning">Alcohol: </strong><em>indica el porcentaje de alcohol que contiene una cerveza</em>
+            <strong class="text-warning">Alcohol: </strong><em>indica el porcentaje de alcohol que contiene una cerveza.</em>
           </p>
           <p>
             <strong class="text-success"><abbr title="Standard Reference Method">Grado SRM:</abbr> </strong><em>valor numérico que se asocia a una tonalidad de la cerveza. Si su valor es bajo se asocia a una tonalidad suave
@@ -36,20 +36,21 @@
           </p>
           <p>
             <strong class="text-warning"><abbr title="International Bitterness Unit ">Grado IBU:</abbr> </strong><em>valor númerico que se asocia al amargor de la cerveza. Si su valor es bajo se asocia a un sabor suave
-            y si su valor es alto es asocia a un sabor mas amargo <a href="https://www.thebrewenthusiast.com/ibus">Si desea mas información al respecto pinche en este enlace</a> </em>
+            y si su valor es alto es asocia a un sabor mas amargo. <a href="https://www.thebrewenthusiast.com/ibus">Si desea mas información al respecto pinche en este enlace</a> </em>
           </p>
           <p>
-            <strong class="text-success">Orgánica: </strong><em>indica si los ingredientes que componen la cerveza son sólo de origen orgánico</em>
+            <strong class="text-success">Orgánica: </strong><em>indica si los ingredientes que componen la cerveza son sólo de origen orgánico.</em>
           </p>
           <p>
-            <strong class="text-warning">Disponibilidad: </strong><em>indica la disponibilidad de una cerveza a lo largo del año, ya sea como cerveza residente o por un periodo determinado en el año (por ejemplo debido a un evento festivo)</em>
+            <strong class="text-warning">Disponibilidad: </strong><em>indica la disponibilidad de una cerveza a lo largo del año, ya sea como cerveza residente o por un periodo determinado en el año (por ejemplo debido a un evento festivo).</em>
           </p>
           <p>
             <strong class="text-success">Preferencias de consumición: </strong><em>indica la temperatura de como ha de servirse para su consumo óptimo, no todas las cervezas han de servirse frías y ni tampoco calientes, por eso es necesario conocer
-            la temperatura óptima para consumir dicha cerveza sin perder sus propiedades por una temperatura incorrecta</em>
+            la temperatura óptima para consumir dicha cerveza sin perder sus propiedades por una temperatura incorrecta.</em>
           </p>
           <p>
-            <strong class="text-warning">Servir preferentemente: </strong><em>indica el vaso "óptimo" donde se ha de servir la cerveza. Existen diversos tipos de vasos y cada vaso tiene unas características que permite obtener el mejor resultado</em>
+            <strong class="text-warning">Servir preferentemente: </strong><em>indica el recipiente "óptimo" donde se ha de servir la cerveza. Existen diversos tipos de vasos y cada vaso tiene unas características que permite saborear de todo
+              los matices de la cerveza.</em>
           </p>
         </div>
       </div>
