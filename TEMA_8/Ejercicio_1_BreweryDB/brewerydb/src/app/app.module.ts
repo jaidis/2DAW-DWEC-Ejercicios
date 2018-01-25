@@ -15,6 +15,7 @@ import { CerveceriaComponent } from './cerveceria/cerveceria.component';
 import { CervezaComponent } from './cerveza/cerveza.component';
 import { ListaCervezasComponent } from './lista-cervezas/lista-cervezas.component';
 import { ServicioApiService } from './servicios/servicio-api.service';
+import { VasosComponent } from './vasos/vasos.component';
 
 //routas del sitio web BreweryDB
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'plantilla', component: TemplateComponent },
   { path: 'cerveceria', component: CerveceriaComponent },
   { path: 'cerveza', component: CervezaComponent },
+  { path: 'vasos', component: VasosComponent },
   { path: '**', component: BodyComponent }
 ];
 export const routing = RouterModule.forRoot(routes);
@@ -36,8 +38,9 @@ export const routing = RouterModule.forRoot(routes);
     FooterComponent,
     TemplateComponent,
     CerveceriaComponent,
+    ListaCervezasComponent,
     CervezaComponent,
-    ListaCervezasComponent
+    VasosComponent
   ],
   imports: [
     BrowserModule,
