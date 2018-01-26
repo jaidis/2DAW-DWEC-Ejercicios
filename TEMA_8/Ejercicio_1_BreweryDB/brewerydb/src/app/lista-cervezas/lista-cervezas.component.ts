@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioApiService } from '../servicios/servicio-api.service';
+import { FiltrarListaCervezasPipe } from '../filtros/filtrar-lista-cervezas.pipe';
 
 @Component({
   selector: 'app-lista-cervezas',
   templateUrl: './lista-cervezas.component.html',
-  styleUrls: ['./lista-cervezas.component.css']
+  styleUrls: ['./lista-cervezas.component.css'],
+  providers: [FiltrarListaCervezasPipe]
 })
 export class ListaCervezasComponent implements OnInit {
   cervezasDelMundo: Array<any>;
+  filtro: string;
   constructor(private servicio: ServicioApiService) {
     // { nombre: '', id:'', url:'' },
     this.cervezasDelMundo = [
@@ -44,6 +47,7 @@ export class ListaCervezasComponent implements OnInit {
       { nombre: 'Jeremiah Red Ale', id: 'WAkHhu', url: 'https://s3.amazonaws.com/brewerydbapi/beer/WAkHhu/upload_45g8Df-medium.png' },
       { nombre: 'Commodore Perry', id: 'TuFFz1', url: 'https://s3.amazonaws.com/brewerydbapi/beer/TuFFz1/upload_HnwP46-medium.png' }
     ];
+    this.filtro = '';
   }
 
   ngOnInit() {
@@ -52,6 +56,10 @@ export class ListaCervezasComponent implements OnInit {
 
   onSolicitarCerveza(idCerveza: string) {
     this.servicio.getCerveza(idCerveza);
+  }
+
+  onPulsarBotonBorrar() {
+    this.filtro = "";
   }
 
 }

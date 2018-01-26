@@ -16,6 +16,7 @@ import { CervezaComponent } from './cerveza/cerveza.component';
 import { ListaCervezasComponent } from './lista-cervezas/lista-cervezas.component';
 import { ServicioApiService } from './servicios/servicio-api.service';
 import { VasosComponent } from './vasos/vasos.component';
+import { FiltrarListaCervezasPipe } from './filtros/filtrar-lista-cervezas.pipe';
 
 //routas del sitio web BreweryDB
 const routes: Routes = [
@@ -40,11 +41,13 @@ export const routing = RouterModule.forRoot(routes);
     CerveceriaComponent,
     ListaCervezasComponent,
     CervezaComponent,
-    VasosComponent
+    VasosComponent,
+    FiltrarListaCervezasPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     routing
   ],
   providers: [ServicioApiService],
