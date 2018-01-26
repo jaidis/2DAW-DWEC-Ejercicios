@@ -6,12 +6,12 @@
     <div class="row text-center mt-5">
       <div class="col-lg-3 col-md-6 mb-4" *ngFor="let cerveza of cervezasDelMundo">
         <div class="card bg-light text-primary">
-          <img class="card-img-top mt-1" src="{{cerveza[2]}}" alt="">
+          <img class="card-img-top mt-1" src="{{cerveza.url}}" alt="">
           <div class="card-body">
-            <h4 class="card-title">{{cerveza[0]}}</h4>
+            <h4 class="card-title">{{cerveza.nombre}}</h4>
           </div>
           <div class="card-footer bg-secondary">
-            <button class="btn btn-primary" [routerLink]="['/cerveza']" (click)="onSolicitarCerveza(cerveza[1])">+</button>
+            <button class="btn btn-primary" [routerLink]="['/cerveza']" (click)="onSolicitarCerveza(cerveza.id)">+</button>
           </div>
         </div>
       </div>

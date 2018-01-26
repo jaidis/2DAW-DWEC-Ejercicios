@@ -21,10 +21,10 @@ import { VasosComponent } from './vasos/vasos.component';
 const routes: Routes = [
   { path: '', component: BodyComponent },
   { path: 'listaCervezas', component: ListaCervezasComponent },
-  { path: 'plantilla', component: TemplateComponent },
+  { path: 'vasos', component: VasosComponent },
+  { path: 'template', component: TemplateComponent },
   { path: 'cerveceria', component: CerveceriaComponent },
   { path: 'cerveza', component: CervezaComponent },
-  { path: 'vasos', component: VasosComponent },
   { path: '**', component: BodyComponent }
 ];
 export const routing = RouterModule.forRoot(routes);
