@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioApiService } from '../servicios/servicio-api.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  version:string;
+  version: string;
+  busqueda: string;
 
-  constructor() {
+  constructor(public servicio: ServicioApiService) {
 
-  this.version = "v0.1";}
+    this.version = "v0.1.2";
+  }
 
   ngOnInit() {
+  }
+
+  onBuscar() {
+    if (this.busqueda != '')
+    {
+      this.servicio.getBusqueda(this.busqueda);
+    }
+  }
+
+  onLimpiar(){
+    this.busqueda = '';
   }
 
 }

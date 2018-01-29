@@ -1,5 +1,13 @@
 # Brewerydb
 
+This is a simple Website about Beers and Breweries. I use the freemium Api [BreweryDB] (https://brewerydb.com)
+
+# Note
+
+If you want to use the same Api you will need a proxy to avoid 'CORS', in my case I used [Cors Anywhere](https://github.com/Rob--W/cors-anywhere/)
+
+# Angular Version
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
 ## Development server

@@ -1,0 +1,47 @@
+<div class="container mt-5 mb-5">
+  <div class="row mt-2" *ngIf="servicio.objetoBusquedaVisible">
+    <div class="col-12" *ngIf="!servicio.objetoBusqueda.data">
+      <img class="img-fluid rounded" alt="" src="assets/img/sin-resultados.jpg">
+    </div>
+    <div class="col-12 text-center">
+      <h2 class="display-5" *ngIf="servicio.objetoBusqueda.data">Resultados sobre la busqueda "{{servicio.objetoBusquedaValor}}"</h2>
+      <h3 class="mt-4 mb-2">Página {{paginaMinima}}</h3>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let busqueda of servicio.objetoBusqueda.data">
+        <div class="card bg-light text-primary">
+          <div class="card-header bg-primary text-white" *ngIf="busqueda.type == 'brewery'">
+            <h4>Cerveceria</h4>
+          </div>
+          <div class="card-header bg-warning" *ngIf="busqueda.type == 'beer'">
+            <h4>Cerveza</h4>
+          </div>
+          <p *ngIf="busqueda.type == 'brewery'">
+            <img class="card-img-top" *ngIf="busqueda.images" src="{{busqueda.images.squareMedium}}" alt="">
+            <img class="card-img-top" *ngIf="!busqueda.images" src="assets/img/not-found.jpg" alt="">
+          </p>
+          <p *ngIf="busqueda.type == 'beer'">
+            <img class="card-img-top" *ngIf="busqueda.labels" src="{{busqueda.labels.large}}" alt="">
+            <img class="card-img-top" *ngIf="!busqueda.labels" src="assets/img/not-found.jpg" alt="">
+          </p>
+          <div class="card-body">
+            <h4 class="card-title">{{busqueda.name}}</h4>
+          </div>
+          <div class="card-footer bg-secondary">
+            <button class="btn btn-primary" [routerLink]="['/cerveza']" (click)="onSolicitarCerveza(busqueda.id)" *ngIf="busqueda.type == 'beer'">+</button>
+            <button class="btn btn-primary" [routerLink]="['/cerveceria']" (click)="onSolicitarCerveceria(busqueda.id)" *ngIf="busqueda.type == 'brewery'">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-4">
+        <button class="btn btn-primary btn-block" type="button" name="button" (click)="onCargarMenosDatos()" *ngIf="paginaMinima > 1">Cargar Menos Datos</button>
+        <button class="btn btn-primary btn-block" type="button" name="button" (click)="onCargarDatos()" *ngIf="paginaMaxima > paginaMinima">Cargar Más Datos</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="!servicio.objetoBusquedaVisible">
+      <img class="img-fluid rounded" alt="" src="assets/img/cargando.png">
+    </div>
+  </div>
+</div>

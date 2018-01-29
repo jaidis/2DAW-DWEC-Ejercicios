@@ -12,13 +12,14 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/vasos']">Guia de Vasos</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <!-- <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/template']">Template</a>
-      </li>
+      </li> -->
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Cerveza...">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-    </form> -->
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" name="busqueda" type="text" placeholder="Cerveza..." [(ngModel)]="busqueda" (click)="onLimpiar()">
+      <button class="btn btn-secondary my-2 my-sm-0" type="button" (click)="onBuscar()" [routerLink]="['/buscador']">Buscar</button>
+    </form>
   </div>
 </nav>
