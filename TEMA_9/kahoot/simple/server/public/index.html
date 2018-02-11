@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style media="screen">
+    #nick {
+      margin-top: 15vh;
+    }
+
+    #esperando {
+      margin-top: 15vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row bg-dark">
+      <div class="col-12 text-center text-white my-2">
+        <h1>Chinese Kahoot</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-info pt-5" style="min-height:92vh;">
+    <div class="row" id="nick">
+      <div class="offset-1 col-10 col-md-6 offset-md-3 bg-warning">
+        <form>
+          <div class="form-group my-2">
+            <label for="nickname">Introduce un nombre de usuario</label>
+            <input type="text" class="form-control" id="nickname" aria-describedby="nickHelp" placeholder="Nombre...">
+            <small id="nickHelp" class="form-text text-muted">En pruebas...</small>
+          </div>
+          <div class="form-group my-2">
+            <label for="room">Introduce un nombre de sala</label>
+            <input type="text" class="form-control" id="room" aria-describedby="roomHelp" placeholder="Sala...">
+            <small id="nickHelp" class="form-text text-muted">En pruebas...</small>
+          </div>
+          <button type="button" class="btn btn-primary btn-block mb-3" id="buttonUsuarios">Enviar</button>
+        </form>
+      </div>
+    </div>
+    <div class="row text-center" id="esperando">
+      <div class="offset-1 col-10 col-md-6 offset-md-3 text-light">
+        <div class="alert alert-danger mb-3" role="alert">
+          <h4>Esperando a otros jugadores...</h4>
+        </div>
+        <button type="submit" class="btn btn-warning btn-block btn-lg mb-3" id="buttonAbandonar">Salir</button>
+      </div>
+    </div>
+    <div class="row" id="confirmar">
+      <div class="col-12 col-md-6 offset-md-3">
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading text-center">¡Atención!</h4>
+          <p>El Kahoot de los chinos va a empezar, si fallas, ¡Estás muerto! <strong>(o quizás no, pero por si acaso yo te aviso)</strong></p>
+          <p class="mb-0">¡Si necesitas ir al baño antes de pulsar en confirmar ve ahora!</p>
+          <hr>
+          <h4 class="alert-heading text-center">Reglas</h4>
+          <p>Las reglas son sencillas</p>
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item list-group-item-success">Tendrás una pregunta con 4 posibles respuestas, solo una de ella es verdadera</li>
+            <li class="list-group-item list-group-item-danger">Por cada pregunta incorrecta se resta 2 puntos</li>
+            <li class="list-group-item list-group-item-success">Por cada pregunta acertada se suma 3 puntos</li>
+            <li class="list-group-item list-group-item-danger">Contesta antes de que se acabe el tiempo, de lo contrario no se sumarán puntos</li>
+            <li class="list-group-item list-group-item-primary">Al finalizar el juego se mostrará tu puntuación y el ganador de la partida</li>
+            </ol>
+        </div>
+        <button type="submit" class="btn btn-warning btn-block btn-lg mb-3" id="buttonConfirmar">Confirmar</button>
+      </div>
+    </div>
+    <div class="row text-center" id="jugar">
+      <div class="offset-1 col-10 col-md-6 offset-md-3 bg-danger">
+        <h3>Jugar</h3>
+      </div>
+    </div>
+
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    // $('#esperando').show();
+    // $('#confirmar').show();
+    // $('#jugar').show();
+
+    //Variables
+    var socket = io();
+
+    //Interfaz gráfica
+    $('#esperando').hide();
+    $('#confirmar').hide();
+    $('#jugar').hide();
+
+    $('#buttonUsuarios').on('click', function() {
+      var nick = $('#nickname').val();
+      var room = $('#room').val();
+      if (nick != '' && room != '') {
+        console.log(`Enviando `+nick+` a la sala `+room);
+        let datos = {usuario:nick, sala:room};
+        socket.emit('new-usuario', datos);
+        $('#nick').hide();
+        $('#esperando').show();
+        return false;
+      }
+    });
+    function sendNick(e) {
+      var nick = $('#nickname').val();
+      console.log('comprobando');
+      let datos;
+      datos.usuario = nick;
+      datos.room = room;
+      socket.emit('new-usuario', datos);
+      $('#nick').hide();
+      $('#esperando').show();
+      return false;
+    }
+    $('#buttonConfirmar').on('click', function() {
+      socket.emit('confirmado', true);
+      $(this).prop('disabled', true);
+    });
+
+    $('#buttonAbandonar').on('click', function() {
+      socket.disconnect();
+      $('#nick').show();
+      $('#esperando').hide();
+
+    });
+
+    //Detección de eventos de SocketIO
+    socket.on('esperarJuego', (value) => {
+      if (value) {
+        $('#esperando').hide();
+        $('#jugar').hide();
+        $('#confirmar').show();
+      } else {
+        $('#esperando').show();
+        $('#confirmar').hide();
+        $('#jugar').hide();
+        $('#buttonConfirmar').prop('disabled', false);
+      }
+    });
+    socket.on('jugar', (value) => {
+      if (value) {
+        window.scrollTo(0, 0)
+        $('#jugar').show();
+        $('#confirmar').hide();
+      } else {
+        $('#jugar').hide();
+        $('#esperando').show();
+        $('#confirmar').hide();
+        $('#buttonConfirmar').prop('disabled', false);
+      }
+    });
+  </script>
+</body>
+
+</html>
