@@ -49,7 +49,6 @@
         <div class="alert alert-danger mb-3" role="alert">
           <h4>Esperando a otros jugadores...</h4>
         </div>
-        <button type="submit" class="btn btn-warning btn-block btn-lg mb-3" id="buttonAbandonar">Salir</button>
       </div>
     </div>
     <div class="row" id="confirmar">
@@ -90,6 +89,8 @@
 
     //Variables
     var socket = io();
+    var nick;
+    var room;
 
     //Interfaz gráfica
     $('#esperando').hide();
@@ -97,8 +98,8 @@
     $('#jugar').hide();
 
     $('#buttonUsuarios').on('click', function() {
-      var nick = $('#nickname').val();
-      var room = $('#room').val();
+      nick = $('#nickname').val();
+      room = $('#room').val();
       if (nick != '' && room != '') {
         console.log(`Enviando `+nick+` a la sala `+room);
         let datos = {usuario:nick, sala:room};
@@ -108,27 +109,10 @@
         return false;
       }
     });
-    function sendNick(e) {
-      var nick = $('#nickname').val();
-      console.log('comprobando');
-      let datos;
-      datos.usuario = nick;
-      datos.room = room;
-      socket.emit('new-usuario', datos);
-      $('#nick').hide();
-      $('#esperando').show();
-      return false;
-    }
+
     $('#buttonConfirmar').on('click', function() {
       socket.emit('confirmado', true);
       $(this).prop('disabled', true);
-    });
-
-    $('#buttonAbandonar').on('click', function() {
-      socket.disconnect();
-      $('#nick').show();
-      $('#esperando').hide();
-
     });
 
     //Detección de eventos de SocketIO

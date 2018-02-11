@@ -23,21 +23,24 @@ io.on('connection', (socket) => {
     console.log('Usuario Identificado: ' + datos.usuario);
     usuarios.push({nombre: datos.usuario, puntuacion: 0});
     socket.join(datos.sala);
+    var confirmado = 0;
     var habitacion = io.sockets.adapter.rooms[datos.sala];
-    console.log('Habitantes de '+ datos.sala + ': '+ habitacion.length);
+    // console.log('Habitantes de '+ datos.sala + ': '+ habitacion.length);
     console.log(usuarios);
-    if (usuarios.length == 2) {
-      console.log('Tenemos 2 jugadores disponibles');
+    if (habitacion.length == 2) {
+      console.log('Tenemos 2 jugadores disponibles en '+datos.sala);
       // console.log(usuarios);
-      io.emit('esperarJuego', true);
+      io.to(datos.sala).emit('esperarJuego', true);
     }
+
     socket.on('confirmado', function(value) {
       if (value) {
-        confirmados++;
-        console.log('Confirmado ' + confirmados);
-        if (usuarios.length == confirmados) {
-          console.log('Ya se puede jugar');
-          io.emit('jugar', true);
+        // console.log(datos.sala);
+        confirmado++
+        // console.log('Confirmado ' + confirmado);
+        if (confirmado >= 1) {
+          console.log('Ya se puede jugar en la Sala: '+datos.sala);
+          io.to(datos.sala).emit('jugar', true);
         }
       }
     });
@@ -45,15 +48,16 @@ io.on('connection', (socket) => {
     //Detección de usuario desconectado
     socket.on('disconnect', () => {
       console.log('Se ha desconectado: ' + datos.usuario);
+      socket.leave(datos.sala);
       for (var i = 0; i < usuarios.length; i++) {
         if (usuarios[i].nombre == datos.usuario) {
           usuarios.splice(i, 1);
         }
       }
-      confirmados = 0;
-      if (usuarios.length == 1) {
+      confirmado = 0;
+      if (habitacion.length == 1) {
         console.log('Esperando más jugadores');
-        io.emit('esperarJuego', false);
+        io.to(datos.sala).emit('esperarJuego', false);
       }
       // console.log(usuarios);
     });
