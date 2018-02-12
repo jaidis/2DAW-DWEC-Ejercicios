@@ -15,6 +15,49 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Variables propias del ServidorSocketService
 let usuarios = [];
 let confirmados = 0;
+let preguntas = [
+  {
+    id: '1',
+    pregunta: '¿Cúanto es 4+4?',
+    correcta: 'a',
+    a: '8',
+    b: '4',
+    c: 'Depende del día',
+    d: '0'
+  }, {
+    id: '2',
+    pregunta: '¿De qué color es cielo?',
+    correcta: 'b',
+    a: 'Blanco',
+    b: 'Azul',
+    c: 'Gris',
+    d: 'Negro'
+  }, {
+    id: '3',
+    pregunta: '¿Fino es maricón?',
+    correcta: 'c',
+    a: '¿Quién es Fino?',
+    b: 'No',
+    c: 'Sí',
+    d: '¿Lo eres Tú, pirata?'
+  }, {
+    id: '4',
+    pregunta: '¿Cómo se llama el coche del Moi?',
+    correcta: 'd',
+    a: 'Pathfinder',
+    b: 'Todoterreno',
+    c: 'El bicho pa ir a por aceituna',
+    d: 'Cañonero'
+  }, {
+    id: '5',
+    pregunta: '¿Dónde está el verdadero Pablo Prieto?',
+    correcta: 'a',
+    a: 'Muerto',
+    b: 'Se lo comió el perro',
+    c: 'En la playa',
+    d: 'En Irlanda evadiendo impuestos'
+  }
+];
 
 //Detección de eventos
 io.on('connection', (socket) => {
@@ -28,7 +71,7 @@ io.on('connection', (socket) => {
     // console.log('Habitantes de '+ datos.sala + ': '+ habitacion.length);
     console.log(usuarios);
     if (habitacion.length == 2) {
-      console.log('Tenemos 2 jugadores disponibles en '+datos.sala);
+      console.log('Tenemos 2 jugadores disponibles en sala: ' + datos.sala);
       // console.log(usuarios);
       io.to(datos.sala).emit('esperarJuego', true);
     }
@@ -39,10 +82,15 @@ io.on('connection', (socket) => {
         confirmado++
         // console.log('Confirmado ' + confirmado);
         if (confirmado >= 1) {
-          console.log('Ya se puede jugar en la Sala: '+datos.sala);
+          console.log('Ya se puede jugar en la Sala: ' + datos.sala);
           io.to(datos.sala).emit('jugar', true);
         }
       }
+    });
+
+    socket.on('pregunta', function(datos) {
+      console.log('Pregunta ' + datos);
+      socket.emit('nPregunta', preguntas[datos]);
     });
 
     //Detección de usuario desconectado

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>No-Kahoot</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <style media="screen">
     #nick {
@@ -15,6 +15,10 @@
     #esperando {
       margin-top: 15vh;
     }
+
+    .jumbo {
+      border-top: 0.5rem solid rgb(255, 255, 255) !important;
+    }
   </style>
 </head>
 
@@ -22,7 +26,7 @@
   <div class="container-fluid">
     <div class="row bg-dark">
       <div class="col-12 text-center text-white my-2">
-        <h1>Chinese Kahoot</h1>
+        <h1>No-Kahoot</h1>
       </div>
     </div>
   </div>
@@ -71,18 +75,27 @@
         <button type="submit" class="btn btn-warning btn-block btn-lg mb-3" id="buttonConfirmar">Confirmar</button>
       </div>
     </div>
-    <div class="row text-center" id="jugar">
-      <div class="offset-1 col-10 col-md-6 offset-md-3 bg-danger">
-        <h3>Jugar</h3>
+    <div class="row text-white text-center" id="jugar">
+      <div class="offset-1 col-10 col-md-6 offset-md-3 px-0">
+        <div class="jumbotron bg-dark">
+          <h1 class="display-4" id="numero">Pregunta </h1>
+          <hr class="my-4 jumbo">
+          <p class="lead pt-2" id="pregunta"></p>
+          <hr class="my-4 jumbo">
+          <button class="btn btn-primary btn-lg btn-block" type="button" id='Button1' data-respuesta=""></button>
+          <button class="btn btn-danger btn-lg btn-block" type="button" id='Button2' data-respuesta=""></button>
+          <button class="btn btn-success btn-lg btn-block" type="button" id='Button3' data-respuesta=""></button>
+          <button class="btn btn-warning btn-lg btn-block" type="button" id='Button4' data-respuesta=""></button>
+        </div>
       </div>
     </div>
-
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script>
+    numero = 1;
     // $('#esperando').show();
     // $('#confirmar').show();
     // $('#jugar').show();
@@ -91,6 +104,8 @@
     var socket = io();
     var nick;
     var room;
+    var numeroPregunta = 0;
+    var respuestaCorrecta;
 
     //Interfaz gráfica
     $('#esperando').hide();
@@ -101,8 +116,11 @@
       nick = $('#nickname').val();
       room = $('#room').val();
       if (nick != '' && room != '') {
-        console.log(`Enviando `+nick+` a la sala `+room);
-        let datos = {usuario:nick, sala:room};
+        console.log(`Enviando ` + nick + ` a la sala ` + room);
+        let datos = {
+          usuario: nick,
+          sala: room
+        };
         socket.emit('new-usuario', datos);
         $('#nick').hide();
         $('#esperando').show();
@@ -130,8 +148,9 @@
     });
     socket.on('jugar', (value) => {
       if (value) {
-        window.scrollTo(0, 0)
-        $('#jugar').show();
+        window.scrollTo(0, 0);
+        nPregunta = 0;
+        socket.emit('pregunta', nPregunta);
         $('#confirmar').hide();
       } else {
         $('#jugar').hide();
@@ -140,7 +159,56 @@
         $('#buttonConfirmar').prop('disabled', false);
       }
     });
+    socket.on('nPregunta', function(datos) {
+      numeroPregunta = parseInt(datos.id);
+      $('#numero').html('Pregunta ' + datos.id);
+      $('#pregunta').html(datos.pregunta);
+      $('#Button1').data('respuesta', 'a');
+      $('#Button1').html(datos.a);
+      $('#Button2').data('respuesta', 'b');
+      $('#Button2').html(datos.b);
+      $('#Button3').data('respuesta', 'c');
+      $('#Button3').html(datos.c);
+      $('#Button4').data('respuesta', 'd');
+      $('#Button4').html(datos.d);
+      // console.log($('#Button1').data('respuesta'),
+      //   $('#Button2').data('respuesta'),
+      //   $('#Button3').data('respuesta'),
+      //   $('#Button4').data('respuesta'));
+      $('#jugar').show();
+      respuestaCorrecta = datos.correcta;
+    });
+    $('#Button1').on('click', () => {
+      if ($('#Button1').data('respuesta') == respuestaCorrecta){
+        console.log('Respuesta correcta A');
+        //Emite 3 puntos
+      }
+      socket.emit('pregunta', numeroPregunta);
+    });
+    $('#Button1').on('click', () => {
+      if ($('#Button1').data('respuesta') == respuestaCorrecta){
+        console.log('Respuesta correcta A');
+        //Emite 3 puntos
+      }
+      socket.emit('pregunta', numeroPregunta);
+    });
+    $('#Button1').on('click', () => {
+      if ($('#Button1').data('respuesta') == respuestaCorrecta){
+        console.log('Respuesta correcta A');
+        //Emite 3 puntos
+      }
+      socket.emit('pregunta', numeroPregunta);
+    });
+    $('#Button1').on('click', () => {
+      if ($('#Button1').data('respuesta') == respuestaCorrecta){
+        console.log('Respuesta correcta A');
+        //Emite 3 puntos
+      }
+      socket.emit('pregunta', numeroPregunta);
+    });
   </script>
 </body>
 
 </html>
+
+<!-- https://www.youtube.com/watch?v=tzNOqcoupWQ -->
