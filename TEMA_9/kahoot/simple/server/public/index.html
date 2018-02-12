@@ -17,7 +17,11 @@
     }
 
     .jumbo {
-      border-top: 0.5rem solid rgb(255, 255, 255) !important;
+      border-top: 0.4rem solid rgb(255, 255, 255) !important;
+    }
+
+    .instrucciones {
+      border-top: 0.4rem solid #8f6403 !important;
     }
   </style>
 </head>
@@ -50,7 +54,7 @@
     </div>
     <div class="row text-center" id="esperando">
       <div class="offset-1 col-10 col-md-6 offset-md-3 text-light">
-        <div class="alert alert-danger mb-3" role="alert">
+        <div class="alert alert-danger mb-3 py-4" role="alert">
           <h4>Esperando a otros jugadores...</h4>
         </div>
       </div>
@@ -59,9 +63,9 @@
       <div class="col-12 col-md-6 offset-md-3">
         <div class="alert alert-warning" role="alert">
           <h4 class="alert-heading text-center">¡Atención!</h4>
-          <p>El Kahoot de los chinos va a empezar, si fallas, ¡Estás muerto! <strong>(o quizás no, pero por si acaso yo te aviso)</strong></p>
+          <p>El No-Kahoot va a empezar, si fallas, ¡Estás muerto! <strong>(o quizás no, pero por si acaso yo te aviso)</strong></p>
           <p class="mb-0">¡Si necesitas ir al baño antes de pulsar en confirmar ve ahora!</p>
-          <hr>
+          <hr class="instrucciones">
           <h4 class="alert-heading text-center">Reglas</h4>
           <p>Las reglas son sencillas</p>
           <ul class="list-group list-group-flush text-center">
@@ -70,7 +74,7 @@
             <li class="list-group-item list-group-item-success">Por cada pregunta acertada se suma 3 puntos</li>
             <li class="list-group-item list-group-item-danger">Contesta antes de que se acabe el tiempo, de lo contrario no se sumarán puntos</li>
             <li class="list-group-item list-group-item-primary">Al finalizar el juego se mostrará tu puntuación y el ganador de la partida</li>
-            </ol>
+          </ul>
         </div>
         <button type="submit" class="btn btn-warning btn-block btn-lg mb-3" id="buttonConfirmar">Confirmar</button>
       </div>
@@ -85,7 +89,30 @@
           <button class="btn btn-primary btn-lg btn-block" type="button" id='Button1' data-respuesta=""></button>
           <button class="btn btn-danger btn-lg btn-block" type="button" id='Button2' data-respuesta=""></button>
           <button class="btn btn-success btn-lg btn-block" type="button" id='Button3' data-respuesta=""></button>
-          <button class="btn btn-warning btn-lg btn-block" type="button" id='Button4' data-respuesta=""></button>
+          <button class="btn btn-warning text-white btn-lg btn-block" type="button" id='Button4' data-respuesta=""></button>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center" id="terminando">
+      <div class="offset-1 col-10 col-md-6 offset-md-3 text-light">
+        <div class="alert alert-danger mb-3 py-4" role="alert">
+          <h4>Esperando a que terminen otros jugadores...</h4>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="ganador">
+      <div class="col-12 col-md-6 offset-md-3">
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading text-center">Puntuaciones</h4>
+          <p>A continuación se muestran las puntuaciones de los jugadores</p>
+          <hr class="instrucciones">
+          <h4 class="alert-heading text-center">Ganador</h4>
+          <p>Y el ganador de la ronda es <strong id="nGanador"></strong></p>
+          <p>Con una puntuación de: <strong id="pGanador"></strong></p>
+          <hr class="instrucciones">
+          <h4 class="alert-heading text-center">Perdedor</h4>
+          <p>Y el perdedor de la ronda es <strong id="nPerdedor"></strong></p>
+          <p>Con una puntuación de: <strong id="pPerdedor"></strong></p>
         </div>
       </div>
     </div>
@@ -111,12 +138,14 @@
     $('#esperando').hide();
     $('#confirmar').hide();
     $('#jugar').hide();
+    $('#terminando').hide();
+    $('#ganador').hide();
 
     $('#buttonUsuarios').on('click', function() {
       nick = $('#nickname').val();
       room = $('#room').val();
       if (nick != '' && room != '') {
-        console.log(`Enviando ` + nick + ` a la sala ` + room);
+        // console.log(`Enviando ` + nick + ` a la sala ` + room);
         let datos = {
           usuario: nick,
           sala: room
@@ -124,26 +153,34 @@
         socket.emit('new-usuario', datos);
         $('#nick').hide();
         $('#esperando').show();
-        return false;
+        $('#ganador').hide();
       }
     });
 
     $('#buttonConfirmar').on('click', function() {
+      // console.log(room);
       socket.emit('confirmado', true);
       $(this).prop('disabled', true);
     });
 
+    socket.on('confirmadoGrupo', (value) => {
+      socket.emit('confirmadoGrupo', true);
+    });
     //Detección de eventos de SocketIO
     socket.on('esperarJuego', (value) => {
       if (value) {
         $('#esperando').hide();
         $('#jugar').hide();
         $('#confirmar').show();
+        $('#terminando').hide();
+        $('#ganador').hide();
       } else {
         $('#esperando').show();
         $('#confirmar').hide();
         $('#jugar').hide();
+        $('#terminando').hide();
         $('#buttonConfirmar').prop('disabled', false);
+        $('#ganador').hide();
       }
     });
     socket.on('jugar', (value) => {
@@ -152,11 +189,14 @@
         nPregunta = 0;
         socket.emit('pregunta', nPregunta);
         $('#confirmar').hide();
+        $('#ganador').hide();
       } else {
         $('#jugar').hide();
         $('#esperando').show();
         $('#confirmar').hide();
+        $('#terminando').hide();
         $('#buttonConfirmar').prop('disabled', false);
+        $('#ganador').hide();
       }
     });
     socket.on('nPregunta', function(datos) {
@@ -171,41 +211,96 @@
       $('#Button3').html(datos.c);
       $('#Button4').data('respuesta', 'd');
       $('#Button4').html(datos.d);
-      // console.log($('#Button1').data('respuesta'),
-      //   $('#Button2').data('respuesta'),
-      //   $('#Button3').data('respuesta'),
-      //   $('#Button4').data('respuesta'));
       $('#jugar').show();
       respuestaCorrecta = datos.correcta;
     });
     $('#Button1').on('click', () => {
-      if ($('#Button1').data('respuesta') == respuestaCorrecta){
+      if ($('#Button1').data('respuesta') == respuestaCorrecta) {
         console.log('Respuesta correcta A');
         //Emite 3 puntos
+        let valorRespuesta = 3;
+        socket.emit('correcta', valorRespuesta);
+      } else {
+        let valorRespuesta = -2;
+        //Emite -2 puntos;
+        socket.emit('incorrecta', valorRespuesta);
       }
       socket.emit('pregunta', numeroPregunta);
     });
-    $('#Button1').on('click', () => {
-      if ($('#Button1').data('respuesta') == respuestaCorrecta){
-        console.log('Respuesta correcta A');
+    $('#Button2').on('click', () => {
+      if ($('#Button2').data('respuesta') == respuestaCorrecta) {
+        console.log('Respuesta correcta B');
         //Emite 3 puntos
+        let valorRespuesta = 3;
+        socket.emit('correcta', valorRespuesta);
+      } else {
+        let valorRespuesta = -2;
+        //Emite -2 puntos;
+        socket.emit('incorrecta', valorRespuesta);
       }
       socket.emit('pregunta', numeroPregunta);
     });
-    $('#Button1').on('click', () => {
-      if ($('#Button1').data('respuesta') == respuestaCorrecta){
-        console.log('Respuesta correcta A');
+    $('#Button3').on('click', () => {
+      if ($('#Button3').data('respuesta') == respuestaCorrecta) {
+        console.log('Respuesta correcta C');
         //Emite 3 puntos
+        let valorRespuesta = 3;
+        socket.emit('correcta', valorRespuesta);
+      } else {
+        let valorRespuesta = -2;
+        //Emite -2 puntos;
+        socket.emit('incorrecta', valorRespuesta);
       }
       socket.emit('pregunta', numeroPregunta);
     });
-    $('#Button1').on('click', () => {
-      if ($('#Button1').data('respuesta') == respuestaCorrecta){
-        console.log('Respuesta correcta A');
+    $('#Button4').on('click', () => {
+      if ($('#Button4').data('respuesta') == respuestaCorrecta) {
+        console.log('Respuesta correcta D');
         //Emite 3 puntos
+        let valorRespuesta = 3;
+        socket.emit('correcta', valorRespuesta);
+      } else {
+        let valorRespuesta = -2;
+        //Emite -2 puntos;
+        socket.emit('incorrecta', valorRespuesta);
       }
       socket.emit('pregunta', numeroPregunta);
     });
+    socket.on('acabado', (valorAcabado) => {
+      if (valorAcabado) {
+        // console.log('Se ha terminado');
+        $('#nick').hide();
+        $('#esperando').hide();
+        $('#confirmar').hide();
+        $('#jugar').hide();
+        $('#terminando').show();
+        $('#ganador').hide();
+        socket.emit('acabado', true);
+      } else {
+        console.log('No se ha acabado?!');
+      }
+    });
+    socket.on('acabadoGrupo', (value) => {
+      socket.emit('acabadoGrupo', true);
+    });
+    socket.on('puntuacion', (valor) => {
+      socket.emit('renderizarPuntuacion',true);
+    });
+
+    socket.on('ganador',(valor)=>{
+      console.log(valor);
+      console.log(valor[0].nGanador);
+      $('#nGanador').html(valor[0].nGanador);
+      $('#pGanador').html(valor[0].pGanador);
+      $('#nPerdedor').html(valor[0].nPerdedor);
+      $('#pPerdedor').html(valor[0].pPerdedor);
+      $('#nick').hide();
+      $('#esperando').hide();
+      $('#confirmar').hide();
+      $('#jugar').hide();
+      $('#terminando').hide();
+      $('#ganador').show();
+    })
   </script>
 </body>
 

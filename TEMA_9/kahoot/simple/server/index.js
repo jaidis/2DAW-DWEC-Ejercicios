@@ -54,7 +54,7 @@ let preguntas = [
     correcta: 'a',
     a: 'Muerto',
     b: 'Se lo comió el perro',
-    c: 'En la playa',
+    c: 'Donde los sillines de las bicis amarillas',
     d: 'En Irlanda evadiendo impuestos'
   }
 ];
@@ -64,9 +64,10 @@ io.on('connection', (socket) => {
   console.log('Se ha iniciado una nueva conexión');
   socket.on('new-usuario', (datos) => {
     console.log('Usuario Identificado: ' + datos.usuario);
-    usuarios.push({nombre: datos.usuario, puntuacion: 0});
+    usuarios.push({nombre: datos.usuario, sala: datos.sala, puntuacion: 0});
     socket.join(datos.sala);
     var confirmado = 0;
+    var acabado = 0;
     var habitacion = io.sockets.adapter.rooms[datos.sala];
     // console.log('Habitantes de '+ datos.sala + ': '+ habitacion.length);
     console.log(usuarios);
@@ -81,18 +82,98 @@ io.on('connection', (socket) => {
         // console.log(datos.sala);
         confirmado++
         // console.log('Confirmado ' + confirmado);
-        if (confirmado >= 1) {
+        if (confirmado >= 2) {
           console.log('Ya se puede jugar en la Sala: ' + datos.sala);
           io.to(datos.sala).emit('jugar', true);
+        } else {
+          socket.broadcast.to(datos.sala).emit('confirmadoGrupo', true);
         }
       }
     });
 
-    socket.on('pregunta', function(datos) {
-      console.log('Pregunta ' + datos);
-      socket.emit('nPregunta', preguntas[datos]);
+    socket.on('confirmadoGrupo', function(value) {
+      confirmado++;
     });
 
+    socket.on('pregunta', function(datos) {
+      console.log('Pregunta ' + datos);
+      if (datos < preguntas.length) {
+        socket.emit('nPregunta', preguntas[datos]);
+      } else {
+        socket.emit('acabado', true);
+      }
+    });
+
+    socket.on('correcta', (valorRespuesta) => {
+      valorRespuesta = parseInt(valorRespuesta);
+      console.log('Respuesta Correcta ' + valorRespuesta + ' puntos');
+      for (var i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].nombre == datos.usuario) {
+          usuarios[i].puntuacion += valorRespuesta;
+          // console.log('encontrado');
+        }
+      }
+      console.log(usuarios);
+    });
+
+    socket.on('incorrecta', (valorRespuesta) => {
+      valorRespuesta = parseInt(valorRespuesta);
+      console.log('Respuesta Incorrecta ' + valorRespuesta + ' puntos');
+      for (var i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].nombre == datos.usuario) {
+          usuarios[i].puntuacion += valorRespuesta;
+          // console.log('encontrado');
+        }
+      }
+      console.log(usuarios);
+    });
+
+    socket.on('acabado', function(value) {
+      if (value) {
+        // console.log(datos.sala);
+        acabado++
+        // console.log('Confirmado ' + confirmado);
+        if (acabado >= 2) {
+          console.log('Ya se puede mostrar la puntuación en la Sala: ' + datos.sala);
+          io.to(datos.sala).emit('puntuacion', true);
+        } else {
+          socket.broadcast.to(datos.sala).emit('acabadoGrupo', true);
+        }
+      }
+    });
+
+    socket.on('acabadoGrupo', function(value) {
+      acabado++;
+    });
+
+    socket.on('renderizarPuntuacion', function(value) {
+      if (value) {
+        let nombreGanador;
+        let puntuacionGanador = -9999;
+        let nombrePerdedor;
+        let puntuacionPerdedor;
+        let jsonPuntuacion = [];
+        for (var i = 0; i < usuarios.length; i++) {
+          if (usuarios[i].sala == datos.sala) {
+            if (usuarios[i].puntuacion > puntuacionGanador) {
+              nombreGanador = usuarios[i].nombre;
+              puntuacionGanador = usuarios[i].puntuacion;
+            } else {
+              nombrePerdedor = usuarios[i].nombre;
+              puntuacionPerdedor = usuarios[i].puntuacion;
+            }
+          }
+        }
+        jsonPuntuacion.push(
+          {
+            nGanador: nombreGanador,
+            pGanador: puntuacionGanador,
+            nPerdedor: nombrePerdedor,
+            pPerdedor: puntuacionPerdedor
+          });
+        io.to(datos.sala).emit('ganador', jsonPuntuacion);
+      }
+    });
     //Detección de usuario desconectado
     socket.on('disconnect', () => {
       console.log('Se ha desconectado: ' + datos.usuario);
