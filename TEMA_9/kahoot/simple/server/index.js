@@ -21,17 +21,17 @@ let preguntas = [
     pregunta: '¿Cúanto es 4+4?',
     correcta: 'a',
     a: '8',
-    b: '4',
-    c: 'Depende del día',
+    b: '16',
+    c: 'No lo sé, soy rubia',
     d: '0'
   }, {
     id: '2',
-    pregunta: '¿De qué color es cielo?',
-    correcta: 'b',
-    a: 'Blanco',
-    b: 'Azul',
-    c: 'Gris',
-    d: 'Negro'
+    pregunta: '¿Quién ganaría en una pelea, Batman o Superman?',
+    correcta: 'd',
+    a: 'Batman',
+    b: 'Ninguno',
+    c: 'Wonder Woman',
+    d: 'Superman'
   }, {
     id: '3',
     pregunta: '¿Fino es maricón?',
@@ -42,20 +42,65 @@ let preguntas = [
     d: '¿Lo eres Tú, pirata?'
   }, {
     id: '4',
-    pregunta: '¿Cómo se llama el coche del Moi?',
-    correcta: 'd',
-    a: 'Pathfinder',
-    b: 'Todoterreno',
-    c: 'El bicho pa ir a por aceituna',
-    d: 'Cañonero'
+    pregunta: '¿Saben pensar los políticos?',
+    correcta: 'b',
+    a: 'Claro, España va bien',
+    b: 'No en su profesión, está mal visto',
+    c: 'Sólo quieren robarnos',
+    d: 'Me da igual la política'
   }, {
     id: '5',
-    pregunta: '¿Dónde está el verdadero Pablo Prieto?',
-    correcta: 'a',
-    a: 'Muerto',
-    b: 'Se lo comió el perro',
-    c: 'Donde los sillines de las bicis amarillas',
-    d: 'En Irlanda evadiendo impuestos'
+    pregunta: '¿Por qué se suicidó el libro de matemáticas? ',
+    correcta: 'd',
+    a: 'Porque sí',
+    b: 'Los libros no se suicidan',
+    c: 'Porque amaba en secreto al libro de física',
+    d: 'Porque tenía muchos problemas'
+  },
+  {
+    id:'6',
+    pregunta:'¿Qué isla del Caribe tiene nombre de flor?',
+    correcta:'a',
+    a:'La isla Margarita',
+    b:'La isla Rosa',
+    c:'La isla Petunia',
+    d:'La isla Champiñón'
+  },
+  {
+    id:'7',
+    pregunta:'¿Cuál es la residencia oficial más grande del mundo? ',
+    correcta:'c',
+    a:'San Marino',
+    b:'Andorra',
+    c:'El Vaticano',
+    d:'Fátima'
+  },
+  {
+    id:'8',
+    pregunta:'¿En qué árbol crecen los dátiles?',
+    correcta:'b',
+    a:'No crecen en los árboles',
+    b:'En la palmera',
+    c:'En el peral',
+    d:'En la chumbera'
+  },
+  {
+    id:'9',
+    pregunta:'¿Qué rasgo facial no tiene la Mona Lisa? ',
+    correcta:'a',
+    a:'Cejas',
+    b:'Nariz',
+    c:'Oreja',
+    d:'Boca'
+  },
+  {
+    id:'10',
+    pregunta:'¿Qué pie puso primero Neil Amstrong sobre la Luna?',
+    correcta:'d',
+    a:'El del medio',
+    b:'Pisó con los 2 pies',
+    c:'El derecho',
+    d:'El izquierdo'
   }
 ];
 

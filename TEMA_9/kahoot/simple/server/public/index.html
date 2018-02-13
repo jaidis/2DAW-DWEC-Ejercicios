@@ -25,13 +25,13 @@
         <form>
           <div class="form-group my-2">
             <label for="nickname">Introduce un nombre de usuario</label>
-            <input type="text" class="form-control" id="nickname" aria-describedby="nickHelp" placeholder="Nombre...">
-            <small id="nickHelp" class="form-text text-muted">En pruebas...</small>
+            <input type="text" class="form-control" id="nickname" aria-describedby="nickHelp" placeholder="Nombre..." autocomplete="off">
+            <small id="nickHelp" class="form-text text-muted">Utiliza el nick que quieras</small>
           </div>
           <div class="form-group my-2">
             <label for="room">Introduce un nombre de sala</label>
-            <input type="text" class="form-control" id="room" aria-describedby="roomHelp" placeholder="Sala...">
-            <small id="nickHelp" class="form-text text-muted">En pruebas...</small>
+            <input type="text" class="form-control" id="room" aria-describedby="roomHelp" placeholder="Sala..." autocomplete="off" autocapitalize="off">
+            <small id="nickHelp" class="form-text text-muted">Prueba con algún nombre, quizás te lleves una sorpresa...</small>
           </div>
           <button type="button" class="btn btn-primary btn-block mb-3" id="buttonUsuarios">Enviar</button>
         </form>
@@ -111,7 +111,7 @@
         <div class="col-12 px-0 mb-4">
           <form action="#">
             <div class="form-group mb-3">
-              <input type="text" class="form-control " id="mensajeSala" placeholder="Escribe....">
+              <input type="text" class="form-control" id="mensajeSala" placeholder="Escribe...." autocomplete="off">
             </div>
             <button type="button" class="btn btn-danger btn-block" id="buttonEnviar"><i class="fa fa-paper-plane fa-2x"></i></button>
           </form>

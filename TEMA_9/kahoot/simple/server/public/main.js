@@ -52,6 +52,12 @@ $('#buttonUsuarios').on('click', function() {
 // +
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+$('#mensajeSala').keypress(function( event ) {
+  if ( event.which == 13 ) {
+     event.preventDefault();
+     $('#buttonEnviar').click();
+  }
+});
 $('#buttonEnviar').on('click', function() {
   let msg = $('#mensajeSala').val();
   // console.log(msg);
@@ -64,6 +70,7 @@ socket.on('maquetaMensaje', (infoMensaje) => {
   $('.cajaMensajes').append('<li class="mensaje"><strong>'+ infoMensaje[0].usuario +'</strong> : <em>'+ infoMensaje[0].mensaje +'</em></li>');
   $('.mensaje:odd').addClass('pares');
   $('.mensaje:even').addClass('impares');
+  $('.cajaMensajes').scrollTop($('.cajaMensajes')[0].scrollHeight);
 });
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

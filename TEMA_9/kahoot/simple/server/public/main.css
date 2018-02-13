@@ -1,3 +1,7 @@
+body{
+  background-color: #17a2b8;
+}
+
 #nick {
   margin-top: 15vh;
 }
@@ -8,7 +12,7 @@
 
 .contenedor{
   min-height:92vh;
-  max-height:200vh;
+  max-height:100vh;
 }
 
 .jumbo {
