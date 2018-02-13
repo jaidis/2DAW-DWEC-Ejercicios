@@ -156,6 +156,8 @@ io.on('connection', (socket) => {
         for (var i = 0; i < usuarios.length; i++) {
           if (usuarios[i].sala == datos.sala) {
             if (usuarios[i].puntuacion > puntuacionGanador) {
+              nombrePerdedor = nombreGanador;
+              puntuacionPerdedor = puntuacionGanador;
               nombreGanador = usuarios[i].nombre;
               puntuacionGanador = usuarios[i].puntuacion;
             } else {
@@ -164,16 +166,22 @@ io.on('connection', (socket) => {
             }
           }
         }
-        jsonPuntuacion.push(
-          {
-            nGanador: nombreGanador,
-            pGanador: puntuacionGanador,
-            nPerdedor: nombrePerdedor,
-            pPerdedor: puntuacionPerdedor
-          });
+        jsonPuntuacion.push({nGanador: nombreGanador, pGanador: puntuacionGanador, nPerdedor: nombrePerdedor, pPerdedor: puntuacionPerdedor});
         io.to(datos.sala).emit('ganador', jsonPuntuacion);
       }
     });
+
+    socket.on('salir', function(value) {
+      console.log('Se ha desconectado: ' + datos.usuario);
+      socket.leave(datos.sala);
+      for (var i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].nombre == datos.usuario) {
+          usuarios.splice(i, 1);
+        }
+      }
+      confirmado = 0;
+    });
+
     //Detección de usuario desconectado
     socket.on('disconnect', () => {
       console.log('Se ha desconectado: ' + datos.usuario);

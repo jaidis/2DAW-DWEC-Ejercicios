@@ -23,6 +23,9 @@
     .instrucciones {
       border-top: 0.4rem solid #8f6403 !important;
     }
+    .btn{
+      white-space: normal;
+    }
   </style>
 </head>
 
@@ -89,7 +92,7 @@
           <button class="btn btn-primary btn-lg btn-block" type="button" id='Button1' data-respuesta=""></button>
           <button class="btn btn-danger btn-lg btn-block" type="button" id='Button2' data-respuesta=""></button>
           <button class="btn btn-success btn-lg btn-block" type="button" id='Button3' data-respuesta=""></button>
-          <button class="btn btn-warning text-white btn-lg btn-block" type="button" id='Button4' data-respuesta=""></button>
+          <button class="btn btn-warning text-white btn-block btn-lg" type="button" id='Button4' data-respuesta=""></button>
         </div>
       </div>
     </div>
@@ -100,7 +103,7 @@
         </div>
       </div>
     </div>
-    <div class="row" id="ganador">
+    <div class="row text-center" id="ganador">
       <div class="col-12 col-md-6 offset-md-3">
         <div class="alert alert-warning" role="alert">
           <h4 class="alert-heading text-center">Puntuaciones</h4>
@@ -114,6 +117,7 @@
           <p>Y el perdedor de la ronda es <strong id="nPerdedor"></strong></p>
           <p>Con una puntuación de: <strong id="pPerdedor"></strong></p>
         </div>
+        <button type="submit" class="btn btn-warning btn-block btn-lg mb-3" id="buttonCerrar">Salir</button>
       </div>
     </div>
   </div>
@@ -161,6 +165,7 @@
       // console.log(room);
       socket.emit('confirmado', true);
       $(this).prop('disabled', true);
+
     });
 
     socket.on('confirmadoGrupo', (value) => {
@@ -172,6 +177,7 @@
         $('#esperando').hide();
         $('#jugar').hide();
         $('#confirmar').show();
+        $('#buttonConfirmar').prop('disabled', false);
         $('#terminando').hide();
         $('#ganador').hide();
       } else {
@@ -284,12 +290,12 @@
       socket.emit('acabadoGrupo', true);
     });
     socket.on('puntuacion', (valor) => {
-      socket.emit('renderizarPuntuacion',true);
+      socket.emit('renderizarPuntuacion', true);
     });
 
-    socket.on('ganador',(valor)=>{
-      console.log(valor);
-      console.log(valor[0].nGanador);
+    socket.on('ganador', (valor) => {
+      // console.log(valor);
+      // console.log(valor[0].nGanador);
       $('#nGanador').html(valor[0].nGanador);
       $('#pGanador').html(valor[0].pGanador);
       $('#nPerdedor').html(valor[0].nPerdedor);
@@ -300,7 +306,12 @@
       $('#jugar').hide();
       $('#terminando').hide();
       $('#ganador').show();
-    })
+    });
+    $('#buttonCerrar').on('click', () => {
+      socket.emit('salir', true);
+      $('#nick').show();
+      $('#ganador').hide();
+    });
   </script>
 </body>
 
