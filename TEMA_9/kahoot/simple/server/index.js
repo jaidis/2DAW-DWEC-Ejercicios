@@ -77,6 +77,12 @@ io.on('connection', (socket) => {
       io.to(datos.sala).emit('esperarJuego', true);
     }
 
+    socket.on('mensaje', (msg)=>{
+      let infoMensaje = [];
+      infoMensaje.push({usuario:datos.usuario, mensaje:msg});
+      io.to(datos.sala).emit('maquetaMensaje', infoMensaje);
+    });
+
     socket.on('confirmado', function(value) {
       if (value) {
         // console.log(datos.sala);
