@@ -1,1 +1,18 @@
-<h1>Kahoot</h1>
+<div class="container bg-dark" *ngIf="interfazBienvenida">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="my-5 text-center text-white">{{title}}</h1>
+    </div>
+    <div class="offset-3 col-6 my-5">
+      <input class="input" type="text" placeholder="Nombre del usuario" [(ngModel)]="usuario" />
+      <button class="btn btn-primary"(click)="sendUsuario()">Enviar</button>
+    </div>
+  </div>
+</div>
+{{interfazBienvenida}}
+<div class="container bg-dark" *ngIf="!interfazBienvenida">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="my-5 text-center text-white">Se borra</h1>
+    </div>
+</div>

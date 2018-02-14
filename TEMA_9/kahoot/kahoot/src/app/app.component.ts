@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ServidorSocketService } from './servicios/servidor-socket.service';
 
 @Component({
@@ -7,11 +8,26 @@ import { ServidorSocketService } from './servicios/servidor-socket.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'Kahoot (Semi clonado)';
+  usuario: string;
+  interfazBienvenida:any;
 
-  constructor(private servicio:ServidorSocketService) {
+  constructor(public servicio: ServidorSocketService) {
 
   }
 
-  ngOnInit() { }
+  sendUsuario() {
+    this.servicio.sendUsuario(this.usuario);
+  }
+
+  ngOnInit() {
+    console.log('servicio '+this.servicio.limpiarBienvenida);
+    this.servicio.limpiarBienvenida.subscribe((observer)=>{
+      this.interfazBienvenida = observer;
+    });
+  }
+
+  ngDoCheck(){
+
+  }
 }
